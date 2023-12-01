@@ -371,9 +371,9 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 			// assign score of number of votes for this box if our colour is nearby
 			//TODO FIX THIS
 			if isColorNear {
-				votes[proposal] = proposalVotes[proposal]
+				votes[proposal] = float64(proposalVotes[proposal])
 			} else {
-				votes[proposal] = 0
+				votes[proposal] = 0.0
 			}
 		}
 	}
@@ -389,11 +389,11 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 	for _, agent := range fellowBikers {
 		avg_opinion = avg_opinion + bb.opinions[agent.GetID()].opinion
 	}
-	if (avg_opinion < leaveThreshold) || dislikeVote {
-		dislikeVote = false
-		return ChangeBike //WTf is this bullshit
+	if (avg_opinion < leaveThreshold) || bb.dislikeVote {
+		bb.dislikeVote = false
+		return bb.DecideAction() //THIS SHIT JUST RETURNS PEDAL (MVP) see BaseBiker.go
 	} else {
-		return Pedal
+		return bb.DecideAction()
 	}
 }
 
@@ -418,7 +418,7 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 	}
 
 	//agent doesn't rebel, just decides to leave next round if dislike vote
-	lootBoxes := bb.gameState.GetLootBoxes()
+	lootBoxes := bb.GetGameState().GetLootBoxes()
 	currLocation := bb.GetLocation()
 	if len(lootBoxes) > 0 {
 		targetPos := lootBoxes[direction].GetPosition()
@@ -436,9 +436,9 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 			Brake:   0.0,
 			Turning: turningDecision,
 		}
-		bb.forces = boxForces
+		bb.SetForces(boxForces)
 	} else { //shouldnt happen, but would just run from audi
-		audiPos := bb.gameState.GetAudi().GetPosition()
+		audiPos := bb.GetGameState().GetAudi().GetPosition()
 		deltaX := audiPos.X - currLocation.X
 		deltaY := audiPos.Y - currLocation.Y
 		// Steer in opposite direction to audi
@@ -454,7 +454,7 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 			Brake:   0.0,
 			Turning: turningDecision,
 		}
-		bb.GetForces = escapeAudiForces
+		bb.SetForces(escapeAudiForces)
 	}
 
 }
@@ -467,11 +467,11 @@ func (bb *Biker1) UpdateEffort(agent *obj.BaseBiker) {
 	fellowBikers := bb.GetFellowBikers()
 	totalPedalForce := 0.0
 	for _, agent := range fellowBikers {
-		totalPedalForce = totalPedalForce + agent.GetForces.Pedal
+		totalPedalForce = totalPedalForce + agent.GetForces().Pedal
 	}
 	avgForce := totalPedalForce / float64(len(fellowBikers))
 	//effort expectation is scaled by their energy level
-	finalEffort := (agent.GetForces.Pedal - avgForce*agent.GetEnergyLevel()) + 1
+	finalEffort := (agent.GetForces().Pedal - avgForce*agent.GetEnergyLevel()) + 1
 
 	if finalEffort > 1 {
 		finalEffort = 1
@@ -479,31 +479,49 @@ func (bb *Biker1) UpdateEffort(agent *obj.BaseBiker) {
 	if finalEffort < 0 {
 		finalEffort = 0
 	}
-	bb.opinions[agent.GetID()].effort = finalEffort
+	newOpinion := Opinion{
+		effort:   finalEffort,
+		fairness: bb.opinions[agent.GetID()].fairness,
+		trust:    bb.opinions[agent.GetID()].trust,
+		opinion:  bb.opinions[agent.GetID()].opinion,
+	}
+	bb.opinions[agent.GetID()] = newOpinion
 }
 
 func (bb *Biker1) UpdateTrust(agent *obj.BaseBiker) {
 	id := agent.GetID()
-	if agent.GetForces.Turning.SteeringForce == bb.GetForces.Turning.SteeringForce {
+	if agent.GetForces().Turning.SteeringForce == bb.GetForces().Turning.SteeringForce {
 		finalTrust := bb.opinions[id].trust + deviatePositive
 		if finalTrust > 1 {
 			finalTrust = 1
 		}
-		bb.opinions[id].trust = finalTrust
+		newOpinion := Opinion{
+			effort:   bb.opinions[id].effort,
+			fairness: bb.opinions[id].fairness,
+			trust:    finalTrust,
+			opinion:  bb.opinions[id].opinion,
+		}
+		bb.opinions[id] = newOpinion
 	} else {
 		finalTrust := bb.opinions[id].trust + deviateNegative
 		if finalTrust < 0 {
 			finalTrust = 0
 		}
-		bb.opinions[id].trust = finalTrust
+		newOpinion := Opinion{
+			effort:   bb.opinions[id].effort,
+			fairness: bb.opinions[id].fairness,
+			trust:    finalTrust,
+			opinion:  bb.opinions[id].opinion,
+		}
+		bb.opinions[id] = newOpinion
 	}
 }
 
 func (bb *Biker1) UpdateFairness(agent *obj.BaseBiker) {
 	difference := 0.0
 	agentVote := agent.FinalDirectionVote()
-	fairVote := 1 / len(agentVote)
-	for id, vote := range agentVote {
+	fairVote := float64(1 / len(agentVote))
+	for _, vote := range agentVote {
 		difference = difference + math.Abs(vote-fairVote)
 	}
 	finalFairness := bb.opinions[agent.GetID()].fairness + fairnessDifference - difference/2
@@ -514,31 +532,45 @@ func (bb *Biker1) UpdateFairness(agent *obj.BaseBiker) {
 	if finalFairness < 0 {
 		finalFairness = 0
 	}
-	bb.opinions[agent.GetID()].fairness = finalFairness
+	agentID := agent.GetID()
+	newOpinion := Opinion{
+		effort:   bb.opinions[agentID].effort,
+		fairness: finalFairness,
+		trust:    bb.opinions[agentID].trust,
+		opinion:  bb.opinions[agentID].opinion,
+	}
+	bb.opinions[agent.GetID()] = newOpinion
 }
 
 func (bb *Biker1) UpdateOpinions() {
 	fellowBikers := bb.GetFellowBikers()
 	for _, agent := range fellowBikers {
 		id := agent.GetID()
-		opinion, ok := bb.Opinion[agent.GetID()]
+		_, ok := bb.opinions[agent.GetID()]
+
 		if !ok {
+			agentId := agent.GetID()
 			//if we have no data on an agent, initialise to neutral
-			bb.opinions[agent.GetID()] := Opinion{
+			newOpinion := Opinion{
 				effort:   0.5,
 				trust:    0.5,
 				fairness: 0.5,
 				opinion:  0.5,
 			}
+			bb.opinions[agentId] = newOpinion
 		}
 		bb.UpdateTrust(agent)
 		bb.UpdateEffort(agent)
 		bb.UpdateFairness(agent)
-		bb.opinions[id].opinion = (bb.opinions[id].trust + bb.opinions[id].effort + bb.opinions[id].fairness) / 3
-	}
 
-	for _, agent := range fellowBikers {
-		bb.Opinion.opinion[agent.GetID()] := (bb.Opinion.trust[agent.GetID()]*trustconstant + bb.Opinion.effort[agent.GetID()]*effortConstant + bb.Opinion.fairness[agent.GetID()]*fairnessConstant) / (trustconstant + effortConstant + fairnessConstant)
+		//Sorry no youre right, keep it, silly me
+		newOpinion := Opinion{
+			effort:   bb.opinions[id].effort,
+			trust:    bb.opinions[id].trust,
+			fairness: bb.opinions[id].fairness,
+			opinion:  (bb.opinions[id].trust + bb.opinions[id].effort + bb.opinions[id].fairness) / 3,
+		}
+		bb.opinions[id] = newOpinion
 	}
 }
 
