@@ -13,11 +13,6 @@ import (
 )
 
 
-// Add all of our constants her
-const deviateNegative = -0.3
-const deviatePositive = 0.2
-const leave = 0.2
-const kick = 0.4
 
 
 
@@ -32,6 +27,7 @@ type Biker1 struct {
 	megaBikeId                       uuid.UUID  // if they are not on a bike it will be 0
 	gameState                        IGameState // updated by the server at every round
 	allocationParams                 ResourceAllocationParams
+	//agent specific parameters
 	deviateNegative = -0.3			// trust loss on deviation
 	deviatePositive = 0.2			// trust gain on non deviation
 	leaveThreshold = 0.2			// threshold for leaving
@@ -42,12 +38,21 @@ type Biker1 struct {
 	fairnessDifference = 0.5		// modifies how much fairness increases of decreases, higher is more increase, 0.5 is fair
 	lowEnergyLevel = 0.3			// energy level below which the agent will try to get a lootbox of the desired colour
 	dislikeVote = false				// whether the agent disliked the most recent vote
+
 	recentVote 						LootboxVoteMap		// the most recent vote	
 	recentDecided					uuid.UUID			// the most recent decision
 }
-
+//Returns a list of bikers on the same bike as the agent
 func (bb *BaseBiker) GetFellowBikers() []IAgent {
-	return bb.gameState.GetMegaBikes()[megaBikeId].GetAgents()
+	return bb.gameState.GetMegaBikes()[bb.megaBikeId].GetAgents()
+}
+
+//part 1: 
+// the biker itself doesn't technically have a location (as it's on the map only when it's on a bike)
+// in fact this function is only called when the biker needs to make a decision about the pedaling forces
+func (bb *BaseBiker) GetLocation() utils.Coordinates {
+	megaBikes := bb.gameState.GetMegaBikes()
+	return megaBikes[bb.megaBikeId].GetPosition()
 }
 
 
@@ -61,6 +66,8 @@ func calculateSelfishnessScore(success float64, relationship float64) float64 {
 	}
 	return overallScore
 }
+
+// ---------------LOOT ALLOCATION FUNCTIONS------------------
 
 // through this function the agent submits their desired allocation of resources
 // in the MVP each agent returns 1 whcih will cause the distribution to be equal across all of them
@@ -94,7 +101,7 @@ func (bb *BaseBiker) DecideAllocation() voting.IdVoteMap {
 	}
 
 	//3/4) Look in success vector to see relative success of each agent and calculate selfishness score using suc-rel chart (0-1)
-	'''TI - Around line 350, we have Soma`s pseudocode on agent opinion held in bb.Opinion.opinion, lets assume its normalized between 0-1'''
+	//TI - Around line 350, we have Soma`s pseudocode on agent opinion held in bb.Opinion.opinion, lets assume its normalized between 0-1
 	selfishnessScore := make(map[uuid.UUID]float)
 
 	for _, agent := range fellowBikers {
@@ -123,21 +130,14 @@ func (bb *BaseBiker) DecideAllocation() voting.IdVoteMap {
 		distribution[agentId] := distribution[agentId]/runningDistribution // Normalise!
 	}
 	return distribution
-
-
 }
-//part 1: 
-// the biker itself doesn't technically have a location (as it's on the map only when it's on a bike)
-// in fact this function is only called when the biker needs to make a decision about the pedaling forces
-func (bb *BaseBiker) GetLocation() utils.Coordinates {
-	megaBikes := bb.gameState.GetMegaBikes()
-	return megaBikes[bb.megaBikeId].GetPosition()
 
-// necessary functions:
-// for a box, see if we can reach it -> distance to box from us, our energy level -> function verifies if our energy means we can travel far enough to reach box
-	// to do the above, need a function that converts energy to reachable distance 
-// function to return nearest box in our reach to a box (our colour) that is out of reach
-	// function that returns all the boxes we can reach
+// ---------------END OF LOOT ALLOCATION FUNCTIONS------------------
+
+// ---------------DIRECTION DECISION FUNCTIONS------------------
+
+// Simulates a step of the game, assuming all bikers pedal with the same force as us.
+// Returns the distance travelled and the remaining energy
 func (bb *BaseBiker) simulateGameStep(energy float64, velocity float64, force float64) float64 {
 	bikerNum  := bb.GetFellowBikers().length()
 	totalBikerForce := force * bb.GetFellowBikers().length()
@@ -147,7 +147,7 @@ func (bb *BaseBiker) simulateGameStep(energy float64, velocity float64, force fl
 	energy = energy - force*utils.MovingDepletion
 	return distance, energy
 }
-
+//Calculates the approximate distance that can be travelled with the given energy
 func (bb *BaseBiker) energyToReachableDistance(energy float64) float64 {
 	distance := 0.0
 	totalDistance := 0.0
@@ -157,9 +157,8 @@ func (bb *BaseBiker) energyToReachableDistance(energy float64) float64 {
 		totalDistance = totalDistance + distance
 	}
 	return totalDistance
-
 }
-
+//Calculates the energy remaining after travelling the given distance
 func (bb *BaseBiker) distanceToEnergy(distance float64, initialEnergy float64) float64 {
 	totalDistance := 0.0
 	remainingEnergy := initialEnergy
@@ -168,78 +167,85 @@ func (bb *BaseBiker) distanceToEnergy(distance float64, initialEnergy float64) f
 	}
 	return remainingEnergy
 }
-
+//Finds all boxes within our reachable distance
 func (bb *BaseBiker) getAllReachableBoxes() []uuid.UUID {
 	currLocation := bb.GetLocation()
-	ourEnergy := bb.GetEnergyLevel();
+	ourEnergy := bb.GetEnergyLevel()
+	lootBoxes := bb.gameState.GetLootBoxes()
+	reachableBoxes := make([]uuid.UUID)
 	var currDist float64
 	for _, loot := range bb.gameState.GetLootBoxes() {
-		x, y := loot.GetPosition().X, loot.GetPosition().Y
-		currDist = math.Sqrt(math.Pow(currLocation.X-x, 2) + math.Pow(currLocation.Y-y, 2))
+		lootPos := loot.GetPosition()
+		currDist = utils.CalcDistance(currLocation, lootPos)
 		if (currDist < energyToReachableDistance(ourEnergy)){
-			reachableBoxes := append(reachableBoxes, loot)
+			reachableBoxes = append(reachableBoxes, loot)
 		}
 	}
 	return reachableBoxes
 }
-
+//Checks whether a box of the desired colour is within our reachable distance from a given box
 func (bb *BaseBiker) () checkBoxNearColour(box uuid.UUID, energy float64) []uuid.UUID {
-	box_x, box_y := loot.GetPosition().X, loot.GetPosition().Y
+	lootBoxes := bb.gameState.GetLootBoxes()
+	boxPos := lootBoxes[box].GetPosition()
 	var currDist float64
-	for _, loot := range bb.gameState.GetLootBoxes() {
-		x, y := loot.GetPosition().X, loot.GetPosition().Y
-		currDist = math.Sqrt(math.Pow(box_x-x, 2) + math.Pow(box_y-y, 2))
+	for _, loot := range lootBoxes {
+		lootPos := loot.GetPosition()
+		currDist = utils.CalcDistance(boxPos, lootPos)
 		if (currDist < energyToReachableDistance(energy) && loot.GetColour() == bb.soughtColour){
 			return true
 		}
 	}
 	return false
 }
-
-func (bb *BaseBiker) () getNearestReachableBoxToNearestColor() uuid.UUID {
+//Finds the nearest reachable box
+func (bb *BaseBiker) () getNearestReachableBox() uuid.UUID {
 	currLocation := bb.GetLocation()
 	reachableBoxes := getAllReachableBoxes()
 	shortestDist := math.MaxFloat64
-	var nearestBox uuid.UUID
+	//default to nearest box
+	nearestBox := bb.nearestLoot()
 	var currDist float64
-	for _, loot := range reachableBoxes {
-		x, y = loot.GetPosition().X, loot.GetPosition().Y
-		currDist := math.Sqrt(math.Pow(currLocation.X-x, 2) + math.Pow(currLocation.Y-y, 2))
+	for id, loot := range reachableBoxes {
+		lootPos = loot.GetPosition()
+		currDist := utils.CalcDistance(currLocation, lootPos)
 		if (currDist < shortestDist) {
-			nearestBox := loot.getID()
+			nearestBox := id
 		}	
 	}
 	return nearestBox
 }
-
-func (bb *BaseBiker) nearestLootColor() uuid.UUID {
+//Finds the nearest lootbox of agent's colour
+func (bb *BaseBiker) nearestLootColour() uuid.UUID {
 	currLocation := bb.GetLocation()
 	shortestDist := math.MaxFloat64
-	var nearestBox uuid.UUID
+	//default to nearest lootbox
+	nearestBox := bb.nearestLoot()
+	
 	var currDist float64
-	for _, loot := range bb.gameState.GetLootBoxes() {
-		x, y := loot.GetPosition().X, loot.GetPosition().Y
-		currDist = math.Sqrt(math.Pow(currLocation.X-x, 2) + math.Pow(currLocation.Y-y, 2))
+	for id, loot := range bb.gameState.GetLootBoxes() {
+		lootPos := loot.GetPosition()
+		currDist = utils.CalcDistance(currLocation, lootPos)
 		if (currDist < shortestDist) && (loot.GetColour() == bb.soughtColour){
-			nearestBox = loot.GetID()
+			nearestBox = id
 			shortestDist = currDist
 		}
 	}
 	return nearestBox
 }
 
-func (bb *BaseBiker) findNearestColorBox() (uuid.UUID, float64) {
-	nearestColorBox := bb.nearestLootColor()
-	x2, y2 := bb.gameState.GetLootBoxes()[nearestColorBox].GetPosition().X, bb.gameState.GetLootBoxes()[nearestColorBox].GetPosition().Y
+func (bb *BaseBiker) findNearestColourBox() (uuid.UUID, float64) {
+	lootBoxes := bb.gameState.GetLootBoxes()
+	nearestColourBox := bb.nearestLootColour()
+	nearestColour := lootBoxes[nearestColourBox].GetPosition()
 	currLocation := bb.GetLocation()
 	shortestDist := math.MaxFloat64
 	var nearestBox uuid.UUID
 	var currDist float64
-	for _, loot := range bb.gameState.GetLootBoxes() {
-		x1, y1 := loot.GetPosition().X, loot.GetPosition().Y
-		currDist = math.Sqrt(math.Pow(currLocation.X-x1, 2) + math.Pow(currLocation.Y-y1, 2))+math.Sqrt(math.Pow(x1-x2, 2) + math.Pow(y1-y2, 2))
+	for id, loot := range lootboxes {
+		lootPos := loot.GetPosition()
+		currDist = utils.CalcDistance(currLocation, lootPos)
 		if (currDist < shortestDist){
-			nearestBox = loot.GetID()
+			nearestBox = id
 			shortestDist = currDist
 		}
 	}
@@ -505,14 +511,15 @@ func (bb *BaseBiker) ProposeDirection() uuid.UUID {
 	// function to return nearest box in our reach to a box (our colour) that is out of reach
 		// function that returns all the boxes we can reach
 
-	nearestBox, distanceToNearestBox := bb.findNearestColorBox()
+	nearestBox, distanceToNearestBox := bb.findNearestColourBox()
 	// TODO: check if nearestBox actually exists
 	reachableDistance = energyToReachableDistance(bb.energyLevel) // TODO add all other biker energies
 	if distanceToNearestBox < reachableDistance {
 		return nearestBox
 	}
 
-	nearestReachableBox := bb.getNearestReachableBoxToNearestColor()
+	nearestReachableBox := bb.getNearestReachableBox()
+()
 	return nearestReachableBox	
 }
 
