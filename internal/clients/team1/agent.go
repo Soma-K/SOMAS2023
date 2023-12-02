@@ -70,7 +70,7 @@ func (bb *Biker1) GetLootLocation(id uuid.UUID) utils.Coordinates {
 // in fact this function is only called when the biker needs to make a decision about the pedaling forces
 func (bb *Biker1) GetLocation() utils.Coordinates {
 	gs := bb.GetGameState()
-	bikeId := bb.GetMegaBikeId()
+	bikeId := bb.GetBike()
 	megaBikes := gs.GetMegaBikes()
 	return megaBikes[bikeId].GetPosition()
 }
@@ -184,11 +184,10 @@ func (bb *Biker1) distanceToEnergy(distance float64, initialEnergy float64) floa
 	remainingEnergy := initialEnergy
 	extraDist := 0.0
 	for totalDistance < distance {
-		fmt.Printf("HERE9\n")
 		extraDist, remainingEnergy = bb.simulateGameStep(remainingEnergy, bb.GetBikeInstance().GetPhysicalState().Mass, utils.BikerMaxForce*remainingEnergy)
 		totalDistance = totalDistance + extraDist
-		fmt.Printf("Distance: %v\n", distance)
 	}
+
 	return remainingEnergy
 }
 
@@ -319,18 +318,15 @@ func (bb *Biker1) distanceToReachableBox(box uuid.UUID) float64 {
 }
 
 func (bb *Biker1) findRemainingEnergyAfterReachingBox(box uuid.UUID) float64 {
-	fmt.Printf("HERE5")
 	dist := physics.ComputeDistance(bb.GetLocation(), bb.GetGameState().GetLootBoxes()[box].GetPosition())
-	fmt.Printf("HERE6")
 	remainingEnergy := bb.distanceToEnergy(dist, bb.GetEnergyLevel())
-	fmt.Printf("HERE7")
 	return remainingEnergy
 }
 
 // this function will contain the agent's strategy on deciding which direction to go to
 // the default implementation returns an equal distribution over all options
 // this will also be tried as returning a rank of options
-func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMap {
+func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.LootboxVoteMap {
 	// add in voting logic using knowledge of everyone's nominations:
 
 	// for all boxes, rule out any that you can't reach
@@ -343,18 +339,13 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 	// function: given energy and a coordinate on the map, get all boxes that are reachable from that coordinate
 	// if our colour is in those boxes, assign the number of people who voted for that box as the score, else assign, 0
 	// set highest score box to 1, rest to 0 (subject to change)
-	fmt.Printf("proposals: %v\n", proposals)
 	votes := make(voting.LootboxVoteMap)
-	fmt.Printf("votes: %v\n", votes)
 	maxDist := bb.energyToReachableDistance(bb.GetEnergyLevel())
-	fmt.Printf("maxDist: %v\n", maxDist)
 
 	// pseudocode:
 	// loop through proposals
 	// for each box, add 1 to value of key=box_id in dic
-	fmt.Printf("proposals: %v\n", proposals)
 	proposalVotes := make(map[uuid.UUID]int)
-	fmt.Printf("Before Loop 1 \n")
 	for _, proposal := range proposals {
 
 		_, ok := proposalVotes[proposal]
@@ -364,7 +355,6 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 			proposalVotes[proposal] += 1
 		}
 	}
-	fmt.Printf("Before Loop 2 \n")
 	for _, proposal := range proposals {
 		distToBox := bb.distanceToReachableBox(proposal)
 		if distToBox <= maxDist { //if reachable
@@ -381,18 +371,17 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 					return votes
 				}
 			}
-			fmt.Printf("HERE1 \n")
 			// calculate energy left if we went here
 			remainingEnergy := bb.findRemainingEnergyAfterReachingBox(proposal)
-			fmt.Printf("HERE2 \n")
 			// find nearest reachable boxes from current coordinate
-			isColorNear := bb.checkBoxNearColour(proposal, remainingEnergy)
-			fmt.Printf("HERE3 \n")
+			isColourNear := bb.checkBoxNearColour(proposal, remainingEnergy)
 			// assign score of number of votes for this box if our colour is nearby
 			//TODO FIX THIS
-			if isColorNear {
+			if isColourNear {
 				votes[proposal] = float64(proposalVotes[proposal])
+				fmt.Printf("colour near\n")
 			} else {
+				fmt.Printf("colour not near\n")
 				votes[proposal] = 0.0
 			}
 		}
@@ -429,7 +418,8 @@ func (bb *Biker1) getPedalForce() float64 {
 // location of the nearest lootboX
 // the function is passed in the id of the voted lootbox, for now ignored
 func (bb *Biker1) DecideForce(direction uuid.UUID) {
-
+	fmt.Printf("direction: %s", direction)
+	fmt.Printf("direction %v", direction)
 	if bb.recentVote != nil {
 		if bb.recentVote[direction] < leavingThreshold {
 			bb.dislikeVote = true

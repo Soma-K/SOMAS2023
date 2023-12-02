@@ -4,6 +4,7 @@ import (
 	"SOMAS2023/internal/common/objects"
 	"SOMAS2023/internal/common/utils"
 	"SOMAS2023/internal/common/voting"
+	"fmt"
 
 	"github.com/google/uuid"
 )
@@ -47,6 +48,7 @@ func (s *Server) RulerElection(agents []objects.IBaseBiker, governance utils.Gov
 }
 
 func (s *Server) RunDemocraticAction(bike objects.IMegaBike) uuid.UUID {
+	fmt.Printf("In Run Decmocratic Action \n")
 	// map of the proposed lootboxes by bike (for each bike a list of lootbox proposals is made, with one lootbox proposed by each agent on the bike)
 	agents := bike.GetAgents()
 	proposedDirections := make(map[uuid.UUID]uuid.UUID)
@@ -58,13 +60,14 @@ func (s *Server) RunDemocraticAction(bike objects.IMegaBike) uuid.UUID {
 			proposedDirections[agent.GetID()] = agent.ProposeDirection()
 		}
 	}
-
+	fmt.Printf("proposedDirections %v", proposedDirections)
 	// pass the pitched directions of a bike to all agents on that bike and get their final vote
 	finalVotes := make([]voting.LootboxVoteMap, len(agents))
 	for i, agent := range agents {
 		// ---------------------------VOTING ROUTINE - STEP 2 ---------------------
 		finalVotes[i] = agent.FinalDirectionVote(proposedDirections)
 	}
+	fmt.Printf("final votes %v", finalVotes)
 
 	// ---------------------------VOTING ROUTINE - STEP 3 --------------
 	direction := s.GetWinningDirection(finalVotes)

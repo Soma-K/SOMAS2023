@@ -87,11 +87,8 @@ func (s *Server) GetLeavingDecisions(gameState objects.IGameState) {
 	for agentId, agent := range s.GetAgentMap() {
 		fmt.Printf("Agent %s updating gamestate \n", agentId)
 		agent.UpdateGameState(gameState)
-		fmt.Printf("Agent %s updating internal state \n", agentId)
 		agent.UpdateAgentInternalState()
-		fmt.Printf("Agent %s deciding action \n", agentId)
 		decision := agent.DecideAction()
-		fmt.Printf("Agent %s decided action %v \n", agentId, decision)
 		switch decision {
 		case objects.Pedal:
 			continue
@@ -160,7 +157,7 @@ func (s *Server) ProcessJoiningRequests() {
 
 func (s *Server) RunActionProcess() {
 	// vote on governance
-
+	fmt.Println("run action process")
 	for _, bike := range s.GetMegaBikes() {
 		agents := bike.GetAgents()
 		votes := make([]voting.GovernanceVote, len(agents))
@@ -174,14 +171,15 @@ func (s *Server) RunActionProcess() {
 			var direction uuid.UUID
 			electedGovernance, _ := voting.WinnerFromGovernance(votes)
 			bike.SetGovernance(electedGovernance)
-			switch electedGovernance {
-			case utils.Democracy:
-				direction = s.RunDemocraticAction(bike)
-			case utils.Dictatorship:
-				direction = s.RunRulerAction(bike, electedGovernance)
-			case utils.Leadership:
-				direction = s.RunRulerAction(bike, electedGovernance)
-			}
+			// switch electedGovernance {
+			direction = s.RunDemocraticAction(bike)
+			// case utils.Democracy:
+			// 	direction = s.RunDemocraticAction(bike)
+			// case utils.Dictatorship:
+			// 	direction = s.RunRulerAction(bike, electedGovernance)
+			// case utils.Leadership:
+			// 	direction = s.RunRulerAction(bike, electedGovernance)
+			// }
 
 			for _, agent := range agents {
 				agent.DecideForce(direction)
