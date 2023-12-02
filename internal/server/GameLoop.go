@@ -48,9 +48,9 @@ func (s *Server) RunGameLoop() {
 
 func (s *Server) RunBikeSwitch() {
 	// check if agents want ot leave the bike on this round
-	fmt.Printf("Before Get Leaving decision")
+	fmt.Printf("Before Get Leaving decision \n")
 	s.GetLeavingDecisions()
-	fmt.Printf("Before Process Joining Requests")
+	fmt.Printf("Before Process Joining Requests \n")
 	// process joining requests from last round
 	s.ProcessJoiningRequests()
 }

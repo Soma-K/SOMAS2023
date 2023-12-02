@@ -9,7 +9,7 @@ import (
 	"github.com/google/uuid"
 )
 
-const BikerAgentCount = 10
+const BikerAgentCount = 3
 
 func GetAgentGenerators() []baseserver.AgentGeneratorCountPair[objects.IBaseBiker] {
 	return []baseserver.AgentGeneratorCountPair[objects.IBaseBiker]{
