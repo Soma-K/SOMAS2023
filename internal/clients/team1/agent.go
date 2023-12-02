@@ -403,6 +403,8 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 // -----------------END OF DIRECTION DECISION FUNCTIONS------------------
 
 func (bb *Biker1) DecideAction() obj.BikerAction {
+	// update opinions
+	bb.UpdateOpinions()
 	fellowBikers := bb.GetFellowBikers()
 	avg_opinion := 1.0
 	for _, agent := range fellowBikers {
