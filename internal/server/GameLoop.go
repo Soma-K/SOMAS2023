@@ -132,15 +132,21 @@ func (s *Server) RunActionProcess() {
 		// agents that have decided to stay on the bike (and that haven't been kicked off it)
 		// will participate in the voting for the directions
 		// ---------------------------VOTING ROUTINE - STEP 1 ---------------------
+		fmt.Printf("Agent %s is on bike %s \n", agent.GetID(), agent.GetBike())
 		if agent.GetBikeStatus() {
+			fmt.Printf("Agent %s is proposing a direction \n", agent.GetID())
 			s.GetDirectionProposals(agent, proposedDirections)
+			fmt.Printf("Agent %s proposed a direction \n", agent.GetID())
 		}
+
 	}
 
 	// pass the pitched directions of a bike to all agents on that bike and get their final vote
 	for bikeID, proposals := range proposedDirections {
+		fmt.Printf("Bike %s is voting \n", bikeID)
 		// ---------------------------VOTING ROUTINE - STEP 2 ---------------------
 		finalVotes := s.GetProposalsDist(bikeID, proposals)
+		fmt.Printf("Bike %s voted \n", bikeID)
 
 		// ---------------------------VOTING ROUTINE - STEP 3 --------------
 		direction := s.GetWinningDirection(finalVotes)
@@ -178,13 +184,20 @@ func (s *Server) GetProposalsDist(bikeID uuid.UUID, proposals []uuid.UUID) []vot
 	// get second vote given everyone's proposal
 	// the finalVote can either be a ranking of proposed directions or a map from proposal to vote (between 0,1)
 	// we will try implementing both, the infrastructure should be the same
+	fmt.Printf("Bike %s is getting proposals distribution \n", bikeID)
 	agentsOnBike := s.megaBikes[bikeID].GetAgents()
+	fmt.Printf("Bike %s got proposals distribution \n", bikeID)
 	// server collates all vote distributions from each agent into a list of final votes
 	finalVotes := make([]voting.LootboxVoteMap, len(agentsOnBike))
+	fmt.Printf("Bike %s is getting final votes \n", bikeID)
 
 	for _, agent := range s.megaBikes[bikeID].GetAgents() {
+		fmt.Printf("Agent %s is getting final vote \n", agent.GetID())
+
 		finalVotes = append(finalVotes, agent.FinalDirectionVote(proposals))
+		fmt.Printf("Agent %s got final vote \n", agent.GetID())
 	}
+	fmt.Printf("Bike %s got final votes \n", bikeID)
 	return finalVotes
 }
 

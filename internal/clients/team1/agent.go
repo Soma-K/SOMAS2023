@@ -5,6 +5,7 @@ import (
 	"SOMAS2023/internal/common/physics"
 	utils "SOMAS2023/internal/common/utils"
 	voting "SOMAS2023/internal/common/voting"
+	"fmt"
 	"math"
 	"sort"
 
@@ -12,18 +13,18 @@ import (
 )
 
 // agent specific parameters
-const deviateNegative = -0.2   // trust loss on deviation
-const deviatePositive = 0.1    // trust gain on non deviation
-const effortScaling = 0.1      // scaling factor for effort, highr it is the more effort chages each round
-const fairnessScaling = 0.1    // scaling factor for fairness, higher it is the more fairness changes each round
-const leaveThreshold = 0.2     // threshold for leaving
-const kickThreshhold = 0.4     // threshold for kicking
-const fairnessConstant = 1     // weight of fairness in opinion
-const trustconstant = 1        // weight of trust in opinion
-const effortConstant = 1       // weight of effort in opinion
-const fairnessDifference = 0.5 // modifies how much fairness increases of decreases, higher is more increase, 0.5 is fair
-const lowEnergyLevel = 0.3     // energy level below which the agent will try to get a lootbox of the desired colour
-const leavingThreshold = 0.3   // how low the agent's vote must be to leave bike
+const deviateNegative = -0.2     // trust loss on deviation
+const deviatePositive = 0.1      // trust gain on non deviation
+const effortScaling = 0.1        // scaling factor for effort, highr it is the more effort chages each round
+const fairnessScaling = 0.1      // scaling factor for fairness, higher it is the more fairness changes each round
+const leaveThreshold = 0.2       // threshold for leaving
+const kickThreshhold = 0.4       // threshold for kicking
+const fairnessConstant = 1       // weight of fairness in opinion
+const trustconstant = 1          // weight of trust in opinion
+const effortConstant = 1         // weight of effort in opinion
+const fairnessDifference = 0.5   // modifies how much fairness increases of decreases, higher is more increase, 0.5 is fair
+const lowEnergyLevel = 0.3       // energy level below which the agent will try to get a lootbox of the desired colour
+const leavingThreshold = 0.3     // how low the agent's vote must be to leave bike
 const colorOpinionConstant = 0.2 // how much any agent likes any other of the same colour in the objective function
 
 type Opinion struct {
@@ -48,7 +49,6 @@ func (bb *Biker1) GetFellowBikers() []obj.IBaseBiker {
 	bikeId := bb.GetBike()
 	return gs.GetMegaBikes()[bikeId].GetAgents()
 }
-
 
 func (bb *Biker1) GetBikeInstance() obj.IMegaBike {
 	gs := bb.GetGameState()
@@ -182,8 +182,12 @@ func (bb *Biker1) energyToReachableDistance(energy float64) float64 {
 func (bb *Biker1) distanceToEnergy(distance float64, initialEnergy float64) float64 {
 	totalDistance := 0.0
 	remainingEnergy := initialEnergy
+	extraDist := 0.0
 	for totalDistance < distance {
-		distance, remainingEnergy = bb.simulateGameStep(remainingEnergy, bb.GetBikeInstance().GetPhysicalState().Mass, utils.BikerMaxForce*remainingEnergy)
+		fmt.Printf("HERE9\n")
+		extraDist, remainingEnergy = bb.simulateGameStep(remainingEnergy, bb.GetBikeInstance().GetPhysicalState().Mass, utils.BikerMaxForce*remainingEnergy)
+		totalDistance = totalDistance + extraDist
+		fmt.Printf("Distance: %v\n", distance)
 	}
 	return remainingEnergy
 }
@@ -279,7 +283,7 @@ func (bb *Biker1) nearestLootColour() (uuid.UUID, float64) {
 	return nearestBox, shortestDist
 }
 
-func (bb *Biker1) proposeDirection() uuid.UUID {
+func (bb *Biker1) ProposeDirection() uuid.UUID {
 	// all logic for nominations goes in here
 	// find nearest coloured box
 	// if we can reach it, nominate it
@@ -315,8 +319,11 @@ func (bb *Biker1) distanceToReachableBox(box uuid.UUID) float64 {
 }
 
 func (bb *Biker1) findRemainingEnergyAfterReachingBox(box uuid.UUID) float64 {
+	fmt.Printf("HERE5")
 	dist := physics.ComputeDistance(bb.GetLocation(), bb.GetGameState().GetLootBoxes()[box].GetPosition())
+	fmt.Printf("HERE6")
 	remainingEnergy := bb.distanceToEnergy(dist, bb.GetEnergyLevel())
+	fmt.Printf("HERE7")
 	return remainingEnergy
 }
 
@@ -336,15 +343,20 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 	// function: given energy and a coordinate on the map, get all boxes that are reachable from that coordinate
 	// if our colour is in those boxes, assign the number of people who voted for that box as the score, else assign, 0
 	// set highest score box to 1, rest to 0 (subject to change)
-
+	fmt.Printf("proposals: %v\n", proposals)
 	votes := make(voting.LootboxVoteMap)
+	fmt.Printf("votes: %v\n", votes)
 	maxDist := bb.energyToReachableDistance(bb.GetEnergyLevel())
+	fmt.Printf("maxDist: %v\n", maxDist)
 
 	// pseudocode:
 	// loop through proposals
-	// for each box, add 1 to value of key=box_id in dict
+	// for each box, add 1 to value of key=box_id in dic
+	fmt.Printf("proposals: %v\n", proposals)
 	proposalVotes := make(map[uuid.UUID]int)
+	fmt.Printf("Before Loop 1 \n")
 	for _, proposal := range proposals {
+
 		_, ok := proposalVotes[proposal]
 		if !ok {
 			proposalVotes[proposal] = 1
@@ -352,7 +364,7 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 			proposalVotes[proposal] += 1
 		}
 	}
-
+	fmt.Printf("Before Loop 2 \n")
 	for _, proposal := range proposals {
 		distToBox := bb.distanceToReachableBox(proposal)
 		if distToBox <= maxDist { //if reachable
@@ -369,10 +381,13 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 					return votes
 				}
 			}
+			fmt.Printf("HERE1 \n")
 			// calculate energy left if we went here
 			remainingEnergy := bb.findRemainingEnergyAfterReachingBox(proposal)
+			fmt.Printf("HERE2 \n")
 			// find nearest reachable boxes from current coordinate
 			isColorNear := bb.checkBoxNearColour(proposal, remainingEnergy)
+			fmt.Printf("HERE3 \n")
 			// assign score of number of votes for this box if our colour is nearby
 			//TODO FIX THIS
 			if isColorNear {
@@ -382,6 +397,7 @@ func (bb *Biker1) FinalDirectionVote(proposals []uuid.UUID) voting.LootboxVoteMa
 			}
 		}
 	}
+	fmt.Printf("votes: %v\n", votes)
 
 	return votes
 }
@@ -396,9 +412,9 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 	}
 	if (avg_opinion < leaveThreshold) || bb.dislikeVote {
 		bb.dislikeVote = false
-		return bb.DecideAction() //THIS SHIT JUST RETURNS PEDAL (MVP) see BaseBiker.go
+		return 1 //THIS SHIT JUST RETURNS PEDAL (MVP) see BaseBiker.go
 	} else {
-		return bb.DecideAction()
+		return 0
 	}
 }
 
@@ -477,7 +493,7 @@ func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
 	}
 	avgForce := totalPedalForce / float64(len(fellowBikers))
 	//effort expectation is scaled by their energy level -- should it be? (*agent.GetEnergyLevel())
-	finalEffort := bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal - avgForce)*effortScaling
+	finalEffort := bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal-avgForce)*effortScaling
 
 	if finalEffort > 1 {
 		finalEffort = 1
@@ -548,13 +564,12 @@ func (bb *Biker1) UpdateTrust(agentID uuid.UUID) {
 // 	bb.opinions[agent.GetID()] = newOpinion
 // }
 
-
 // how well does agent 1 like agent 2 according to objective metrics
-func (bb *Biker1) GetObjectiveOpinion(id1 uuid.UUID, id2 uuid.UUID) float64{
+func (bb *Biker1) GetObjectiveOpinion(id1 uuid.UUID, id2 uuid.UUID) float64 {
 	agent1 := bb.GetAgentFromId(id1)
 	agent2 := bb.GetAgentFromId(id2)
 	objOpinion := 0.0
-	if agent1.GetColour() == agent2.GetColour(){
+	if agent1.GetColour() == agent2.GetColour() {
 		objOpinion = objOpinion + colorOpinionConstant
 	}
 	objOpinion = objOpinion + (agent1.GetEnergyLevel() - agent2.GetEnergyLevel())
@@ -563,16 +578,15 @@ func (bb *Biker1) GetObjectiveOpinion(id1 uuid.UUID, id2 uuid.UUID) float64{
 	maxpoints := 0
 	for _, bike := range megabikes {
 		for _, agent := range bike.GetAgents() {
-			if agent.GetPoints() > maxpoints{
+			if agent.GetPoints() > maxpoints {
 				maxpoints = agent.GetPoints()
 			}
 		}
 	}
-	objOpinion = objOpinion + float64((agent1.GetPoints() - agent2.GetPoints()) / maxpoints)
-	objOpinion = math.Abs(objOpinion / (2.0+colorOpinionConstant)) //normalise to 0-1
+	objOpinion = objOpinion + float64((agent1.GetPoints()-agent2.GetPoints())/maxpoints)
+	objOpinion = math.Abs(objOpinion / (2.0 + colorOpinionConstant)) //normalise to 0-1
 	return objOpinion
 }
-
 
 func (bb *Biker1) UpdateOpinions() {
 	fellowBikers := bb.GetFellowBikers()
@@ -600,7 +614,7 @@ func (bb *Biker1) UpdateOpinions() {
 			effort:   bb.opinions[id].effort,
 			trust:    bb.opinions[id].trust,
 			fairness: bb.opinions[id].fairness,
-			opinion:  (bb.opinions[id].trust*trustconstant + bb.opinions[id].effort*effortConstant + bb.opinions[id].fairness*fairnessConstant) / trustconstant + effortConstant + fairnessConstant,
+			opinion:  (bb.opinions[id].trust*trustconstant+bb.opinions[id].effort*effortConstant+bb.opinions[id].fairness*fairnessConstant)/trustconstant + effortConstant + fairnessConstant,
 		}
 		bb.opinions[id] = newOpinion
 	}
@@ -610,9 +624,9 @@ func (bb *Biker1) ourReputation() float64 {
 	repuation := 0.0
 	for _, agent := range fellowBikers {
 		repuation = repuation + bb.GetObjectiveOpinion(bb.GetID(), agent.GetID())
-	
+
 	}
-	repuation  = repuation / float64(len(fellowBikers))
+	repuation = repuation / float64(len(fellowBikers))
 	return repuation
 }
 
@@ -743,9 +757,7 @@ func (bb *Biker1) DecideJoining(pendingAgents []uuid.UUID) map[uuid.UUID]bool {
 
 //--------------------END OF BIKER ACCEPTANCE FUNCTIONS-------------------
 
-
 // -------------------GOVERMENT CHOICE FUNCTIONS--------------------------
-
 
 // Might be unnecesary as this is the default goverment choice for us
 func (bb *Biker1) DecideDemocracy() bool {
@@ -754,14 +766,14 @@ func (bb *Biker1) DecideDemocracy() bool {
 	reputation := bb.ourReputation()
 	for _, agent := range fellowBikers {
 		opinion, ok := bb.opinions[agent.GetID()]
-		if ok{
+		if ok {
 			totalOpinion = totalOpinion + opinion.opinion
 		}
 	}
 	normOpinion := totalOpinion / float64(len(fellowBikers))
-	if(normOpinion > 0.5 ) || (reputation > 0.3){
+	if (normOpinion > 0.5) || (reputation > 0.3) {
 		return true
-	} else {	
+	} else {
 		return false
 	}
 }
@@ -772,14 +784,14 @@ func (bb *Biker1) DecideLeadership() bool {
 	reputation := bb.ourReputation()
 	for _, agent := range fellowBikers {
 		opinion, ok := bb.opinions[agent.GetID()]
-		if ok{
+		if ok {
 			totalOpinion = totalOpinion + opinion.opinion
 		}
 	}
 	normOpinion := totalOpinion / float64(len(fellowBikers))
-	if (normOpinion > 0.7 ) || (reputation > 0.5){
+	if (normOpinion > 0.7) || (reputation > 0.5) {
 		return true
-	} else {	
+	} else {
 		return false
 	}
 }
@@ -790,14 +802,14 @@ func (bb *Biker1) DecideDictatorship() bool {
 	reputation := bb.ourReputation()
 	for _, agent := range fellowBikers {
 		opinion, ok := bb.opinions[agent.GetID()]
-		if ok{
+		if ok {
 			totalOpinion = totalOpinion + opinion.opinion
 		}
 	}
 	normOpinion := totalOpinion / float64(len(fellowBikers))
-	if (normOpinion > 0.9 ) || (reputation > 0.7) {
+	if (normOpinion > 0.9) || (reputation > 0.7) {
 		return true
-	} else {	
+	} else {
 		return false
 	}
 }
@@ -810,4 +822,5 @@ func GetBiker1(colour utils.Colour, id uuid.UUID) *Biker1 {
 		BaseBiker: obj.GetBaseBiker(colour, id),
 	}
 }
+
 // -------------------END OF INSTANTIATION FUNCTIONS---------------------
