@@ -12,8 +12,10 @@ import (
 )
 
 // agent specific parameters
-const deviateNegative = -0.3   // trust loss on deviation
-const deviatePositive = 0.2    // trust gain on non deviation
+const deviateNegative = -0.2   // trust loss on deviation
+const deviatePositive = 0.1    // trust gain on non deviation
+const effortScaling = 0.1      // scaling factor for effort, highr it is the more effort chages each round
+const fairnessScaling = 0.1    // scaling factor for fairness, higher it is the more fairness changes each round
 const leaveThreshold = 0.2     // threshold for leaving
 const kickThreshhold = 0.4     // threshold for kicking
 const fairnessConstant = 1     // weight of fairness in opinion
@@ -470,8 +472,8 @@ func (bb *Biker1) UpdateEffort(agent *obj.BaseBiker) {
 		totalPedalForce = totalPedalForce + agent.GetForces().Pedal
 	}
 	avgForce := totalPedalForce / float64(len(fellowBikers))
-	//effort expectation is scaled by their energy level
-	finalEffort := (agent.GetForces().Pedal - avgForce*agent.GetEnergyLevel()) + 1
+	//effort expectation is scaled by their energy level -- should it be? (*agent.GetEnergyLevel())
+	finalEffort := bb.opinions[id].effort + (agent.GetForces().Pedal - avgForce)*effortScaling
 
 	if finalEffort > 1 {
 		finalEffort = 1
@@ -495,36 +497,34 @@ func (bb *Biker1) UpdateTrust(agent *obj.BaseBiker) {
 		if finalTrust > 1 {
 			finalTrust = 1
 		}
-		newOpinion := Opinion{
-			effort:   bb.opinions[id].effort,
-			fairness: bb.opinions[id].fairness,
-			trust:    finalTrust,
-			opinion:  bb.opinions[id].opinion,
-		}
-		bb.opinions[id] = newOpinion
 	} else {
 		finalTrust := bb.opinions[id].trust + deviateNegative
 		if finalTrust < 0 {
 			finalTrust = 0
 		}
-		newOpinion := Opinion{
-			effort:   bb.opinions[id].effort,
-			fairness: bb.opinions[id].fairness,
-			trust:    finalTrust,
-			opinion:  bb.opinions[id].opinion,
-		}
-		bb.opinions[id] = newOpinion
 	}
+	newOpinion := Opinion{
+		effort:   bb.opinions[id].effort,
+		fairness: bb.opinions[id].fairness,
+		trust:    finalTrust,
+		opinion:  bb.opinions[id].opinion,
+	}
+	bb.opinions[id] = newOpinion
 }
 
 func (bb *Biker1) UpdateFairness(agent *obj.BaseBiker) {
 	difference := 0.0
-	agentVote := agent.FinalDirectionVote()
-	fairVote := float64(1 / len(agentVote))
-	for _, vote := range agentVote {
-		difference = difference + math.Abs(vote-fairVote)
+	agentVote := agent.DecideAllocation()
+	fairVote := bb.DecideAllocation()
+	//If anyone has a better solution fo this please do it, couldn't find a better way to substract two maps in go
+	for i, theirVote := range agentVote {
+		for j, ourVote := range fairVote {
+			if i == j {
+				difference = difference + math.Abs(ourVote - theirVote)
+			}
+		}
 	}
-	finalFairness := bb.opinions[agent.GetID()].fairness + fairnessDifference - difference/2
+	finalFairness := bb.opinions[agent.GetID()].fairness + (fairnessDifference - difference/2)*fairnessScaling
 
 	if finalFairness > 1 {
 		finalFairness = 1
@@ -568,7 +568,7 @@ func (bb *Biker1) UpdateOpinions() {
 			effort:   bb.opinions[id].effort,
 			trust:    bb.opinions[id].trust,
 			fairness: bb.opinions[id].fairness,
-			opinion:  (bb.opinions[id].trust + bb.opinions[id].effort + bb.opinions[id].fairness) / 3,
+			opinion:  (bb.opinions[id].trust*trustconstant + bb.opinions[id].effort*effortConstant + bb.opinions[id].fairness*fairnessConstant) / trustconstant + effortConstant + fairnessConstant,
 		}
 		bb.opinions[id] = newOpinion
 	}
@@ -700,3 +700,8 @@ func (bb *Biker1) DecideJoining(pendingAgents []uuid.UUID) map[uuid.UUID]bool {
 }
 
 //--------------------END OF BIKER ACCEPTANCE FUNCTIONS-------------------
+
+
+// -------------------GOVERMENT CHOICE FUNCTIONS--------------------------
+
+
