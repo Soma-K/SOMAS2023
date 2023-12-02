@@ -3,6 +3,7 @@ package voting
 import (
 	"SOMAS2023/internal/common/utils"
 	"errors"
+	"fmt"
 	"math"
 	"sort"
 
@@ -120,6 +121,7 @@ func WinnerFromDist(voters []IVoter) uuid.UUID {
 	if winner == uuid.Nil {
 		winner = randomWinner
 	}
+	fmt.Printf("\nWinner is %v\n", winner)
 
 	return winner
 }

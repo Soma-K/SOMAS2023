@@ -219,6 +219,7 @@ func (s *Server) GetWinningDirection(finalVotes []voting.LootboxVoteMap) uuid.UU
 	for i, v := range finalVotes {
 		IfinalVotes[i] = v
 	}
+	fmt.Printf("\nIfinalVotes %v\n", IfinalVotes)
 
 	return voting.WinnerFromDist(IfinalVotes)
 }

@@ -71,5 +71,6 @@ func (s *Server) RunDemocraticAction(bike objects.IMegaBike) uuid.UUID {
 
 	// ---------------------------VOTING ROUTINE - STEP 3 --------------
 	direction := s.GetWinningDirection(finalVotes)
+	fmt.Printf("winning direction %v", direction)
 	return direction
 }
