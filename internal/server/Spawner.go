@@ -3,6 +3,7 @@ package server
 import (
 	"SOMAS2023/internal/common/objects"
 	"SOMAS2023/internal/common/utils"
+	"SOMAS2023/internal/clients/team1"
 
 	baseserver "github.com/MattSScott/basePlatformSOMAS/BaseServer"
 	"github.com/google/uuid"
@@ -21,7 +22,7 @@ func BikerAgentGenerator() objects.IBaseBiker {
 }
 
 func Biker1AgentGenerator() objects.IBaseBiker {
-	return objects.GetBiker1(utils.GenerateRandomColour(), uuid.New())
+	return team1.GetBiker1(utils.GenerateRandomColour(), uuid.New())
 }
 
 func (s *Server) spawnLootBox() {
