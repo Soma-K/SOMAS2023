@@ -1,15 +1,13 @@
 package server
 
 import (
+	"SOMAS2023/internal/clients/team1"
 	"SOMAS2023/internal/common/objects"
 	"SOMAS2023/internal/common/utils"
-	"SOMAS2023/internal/clients/team1"
 
 	baseserver "github.com/MattSScott/basePlatformSOMAS/BaseServer"
 	"github.com/google/uuid"
 )
-
-const BikerAgentCount = 10
 
 func GetAgentGenerators() []baseserver.AgentGeneratorCountPair[objects.IBaseBiker] {
 	return []baseserver.AgentGeneratorCountPair[objects.IBaseBiker]{
@@ -43,7 +41,8 @@ func (s *Server) spawnMegaBike() {
 }
 
 func (s *Server) replenishMegaBikes() {
-	for i := 0; i < MegaBikeCount-len(s.megaBikes); i++ {
+	neededBikes := MegaBikeCount - len(s.megaBikes)
+	for i := 0; i < neededBikes; i++ {
 		s.spawnMegaBike()
 	}
 }
