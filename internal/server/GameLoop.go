@@ -13,21 +13,22 @@ import (
 func (s *Server) RunGameLoop() {
 
 	// take care of agents that want to leave the bike and of the acceptance/ expulsion process
+	fmt.Printf("BeforeRunBikeSwicth")
 	s.RunBikeSwitch()
-
+	fmt.Printf("BeforeRunActionProcess")
 	// get the direction decisions and pedalling forces
 	s.RunActionProcess()
-
+	fmt.Printf("BeforeUpdateGameState")
 	// The Audi makes a decision
 	s.audi.UpdateGameState(s)
-
+	fmt.Printf("Before The for loop")
 	// Move the mega bikes
 	for _, bike := range s.GetMegaBikes() {
 		// update mass dependent on number of agents on bike
 		bike.UpdateMass()
 		s.MovePhysicsObject(bike)
 	}
-
+	fmt.Printf("BeforeMovePhysiscsOpbject")
 	// Move the audi
 	s.MovePhysicsObject(s.audi)
 
@@ -47,17 +48,23 @@ func (s *Server) RunGameLoop() {
 
 func (s *Server) RunBikeSwitch() {
 	// check if agents want ot leave the bike on this round
+	fmt.Printf("Before Get Leaving decision")
 	s.GetLeavingDecisions()
+	fmt.Printf("Before Process Joining Requests")
 	// process joining requests from last round
 	s.ProcessJoiningRequests()
 }
 
 func (s *Server) GetLeavingDecisions() {
 	for agentId, agent := range s.GetAgentMap() {
-		fmt.Printf("Agent %s updating state \n", agentId)
+		fmt.Printf("Agent %s updating gamestate \n", agentId)
 		agent.UpdateGameState(s)
+		fmt.Printf("Agent %s updating internal state \n", agentId)
 		agent.UpdateAgentInternalState()
-		switch agent.DecideAction() {
+		fmt.Printf("Agent %s deciding action \n", agentId)
+		decision := agent.DecideAction()
+		fmt.Printf("Agent %s decided action %v \n", agentId, decision)
+		switch decision {
 		case objects.Pedal:
 			continue
 		case objects.ChangeBike:

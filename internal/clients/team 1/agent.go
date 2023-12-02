@@ -1,4 +1,4 @@
-package objects
+package team1
 
 import (
 	obj "SOMAS2023/internal/common/objects"
@@ -24,6 +24,7 @@ const effortConstant = 1       // weight of effort in opinion
 const fairnessDifference = 0.5 // modifies how much fairness increases of decreases, higher is more increase, 0.5 is fair
 const lowEnergyLevel = 0.3     // energy level below which the agent will try to get a lootbox of the desired colour
 const leavingThreshold = 0.3   // how low the agent's vote must be to leave bike
+const colorOpinionConstant = 0.2 // how much any agent likes any other of the same colour in the objective function
 
 type Opinion struct {
 	effort   float64
@@ -48,6 +49,7 @@ func (bb *Biker1) GetFellowBikers() []obj.IBaseBiker {
 	return gs.GetMegaBikes()[bikeId].GetAgents()
 }
 
+
 func (bb *Biker1) GetBikeInstance() obj.IMegaBike {
 	gs := bb.GetGameState()
 	bikeId := bb.GetBike()
@@ -57,7 +59,8 @@ func (bb *Biker1) GetBikeInstance() obj.IMegaBike {
 func (bb *Biker1) GetLootLocation(id uuid.UUID) utils.Coordinates {
 	gs := bb.GetGameState()
 	lootboxes := gs.GetLootBoxes()
-	return loot
+	lootbox := lootboxes[id]
+	return lootbox.GetPosition()
 }
 
 //-------------------END OF SETTERS AND GETTERS----------------------
@@ -465,7 +468,8 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 
 // -----------------OPINION FUNCTIONS------------------
 
-func (bb *Biker1) UpdateEffort(agent *obj.BaseBiker) {
+func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
+	agent := bb.GetAgentFromId(agentID)
 	fellowBikers := bb.GetFellowBikers()
 	totalPedalForce := 0.0
 	for _, agent := range fellowBikers {
@@ -473,7 +477,7 @@ func (bb *Biker1) UpdateEffort(agent *obj.BaseBiker) {
 	}
 	avgForce := totalPedalForce / float64(len(fellowBikers))
 	//effort expectation is scaled by their energy level -- should it be? (*agent.GetEnergyLevel())
-	finalEffort := bb.opinions[id].effort + (agent.GetForces().Pedal - avgForce)*effortScaling
+	finalEffort := bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal - avgForce)*effortScaling
 
 	if finalEffort > 1 {
 		finalEffort = 1
@@ -483,17 +487,19 @@ func (bb *Biker1) UpdateEffort(agent *obj.BaseBiker) {
 	}
 	newOpinion := Opinion{
 		effort:   finalEffort,
-		fairness: bb.opinions[agent.GetID()].fairness,
-		trust:    bb.opinions[agent.GetID()].trust,
-		opinion:  bb.opinions[agent.GetID()].opinion,
+		fairness: bb.opinions[agentID].fairness,
+		trust:    bb.opinions[agentID].trust,
+		opinion:  bb.opinions[agentID].opinion,
 	}
 	bb.opinions[agent.GetID()] = newOpinion
 }
 
-func (bb *Biker1) UpdateTrust(agent *obj.BaseBiker) {
-	id := agent.GetID()
+func (bb *Biker1) UpdateTrust(agentID uuid.UUID) {
+	id := agentID
+	agent := bb.GetAgentFromId(agentID)
+	finalTrust := 0.5
 	if agent.GetForces().Turning.SteeringForce == bb.GetForces().Turning.SteeringForce {
-		finalTrust := bb.opinions[id].trust + deviatePositive
+		finalTrust = bb.opinions[id].trust + deviatePositive
 		if finalTrust > 1 {
 			finalTrust = 1
 		}
@@ -512,35 +518,61 @@ func (bb *Biker1) UpdateTrust(agent *obj.BaseBiker) {
 	bb.opinions[id] = newOpinion
 }
 
-func (bb *Biker1) UpdateFairness(agent *obj.BaseBiker) {
-	difference := 0.0
-	agentVote := agent.DecideAllocation()
-	fairVote := bb.DecideAllocation()
-	//If anyone has a better solution fo this please do it, couldn't find a better way to substract two maps in go
-	for i, theirVote := range agentVote {
-		for j, ourVote := range fairVote {
-			if i == j {
-				difference = difference + math.Abs(ourVote - theirVote)
+// func (bb *Biker1) UpdateFairness(agent obj.IBaseBiker) {
+// 	difference := 0.0
+// 	agentVote := agent.DecideAllocation()
+// 	fairVote := bb.DecideAllocation()
+// 	//If anyone has a better solution fo this please do it, couldn't find a better way to substract two maps in go
+// 	for i, theirVote := range agentVote {
+// 		for j, ourVote := range fairVote {
+// 			if i == j {
+// 				difference = difference + math.Abs(ourVote - theirVote)
+// 			}
+// 		}
+// 	}
+// 	finalFairness := bb.opinions[agent.GetID()].fairness + (fairnessDifference - difference/2)*fairnessScaling
+
+// 	if finalFairness > 1 {
+// 		finalFairness = 1
+// 	}
+// 	if finalFairness < 0 {
+// 		finalFairness = 0
+// 	}
+// 	agentID := agent.GetID()
+// 	newOpinion := Opinion{
+// 		effort:   bb.opinions[agentID].effort,
+// 		fairness: finalFairness,
+// 		trust:    bb.opinions[agentID].trust,
+// 		opinion:  bb.opinions[agentID].opinion,
+// 	}
+// 	bb.opinions[agent.GetID()] = newOpinion
+// }
+
+
+// how well does agent 1 like agent 2 according to objective metrics
+func (bb *Biker1) GetObjectiveOpinion(id1 uuid.UUID, id2 uuid.UUID) float64{
+	agent1 := bb.GetAgentFromId(id1)
+	agent2 := bb.GetAgentFromId(id2)
+	objOpinion := 0.0
+	if agent1.GetColour() == agent2.GetColour(){
+		objOpinion = objOpinion + colorOpinionConstant
+	}
+	objOpinion = objOpinion + (agent1.GetEnergyLevel() - agent2.GetEnergyLevel())
+	gs := bb.GetGameState()
+	megabikes := gs.GetMegaBikes()
+	maxpoints := 0
+	for _, bike := range megabikes {
+		for _, agent := range bike.GetAgents() {
+			if agent.GetPoints() > maxpoints{
+				maxpoints = agent.GetPoints()
 			}
 		}
 	}
-	finalFairness := bb.opinions[agent.GetID()].fairness + (fairnessDifference - difference/2)*fairnessScaling
-
-	if finalFairness > 1 {
-		finalFairness = 1
-	}
-	if finalFairness < 0 {
-		finalFairness = 0
-	}
-	agentID := agent.GetID()
-	newOpinion := Opinion{
-		effort:   bb.opinions[agentID].effort,
-		fairness: finalFairness,
-		trust:    bb.opinions[agentID].trust,
-		opinion:  bb.opinions[agentID].opinion,
-	}
-	bb.opinions[agent.GetID()] = newOpinion
+	objOpinion = objOpinion + float64((agent1.GetPoints() - agent2.GetPoints()) / maxpoints)
+	objOpinion = math.Abs(objOpinion / (2.0+colorOpinionConstant)) //normalise to 0-1
+	return objOpinion
 }
+
 
 func (bb *Biker1) UpdateOpinions() {
 	fellowBikers := bb.GetFellowBikers()
@@ -559,9 +591,9 @@ func (bb *Biker1) UpdateOpinions() {
 			}
 			bb.opinions[agentId] = newOpinion
 		}
-		bb.UpdateTrust(agent)
-		bb.UpdateEffort(agent)
-		bb.UpdateFairness(agent)
+		bb.UpdateTrust(id)
+		bb.UpdateEffort(id)
+		//bb.UpdateFairness(agent)
 
 		//Sorry no youre right, keep it, silly me
 		newOpinion := Opinion{
@@ -572,6 +604,16 @@ func (bb *Biker1) UpdateOpinions() {
 		}
 		bb.opinions[id] = newOpinion
 	}
+}
+func (bb *Biker1) ourReputation() float64 {
+	fellowBikers := bb.GetFellowBikers()
+	repuation := 0.0
+	for _, agent := range fellowBikers {
+		repuation = repuation + bb.GetObjectiveOpinion(bb.GetID(), agent.GetID())
+	
+	}
+	repuation  = repuation / float64(len(fellowBikers))
+	return repuation
 }
 
 // ----------------END OF OPINION FUNCTIONS--------------
@@ -674,7 +716,7 @@ func (bb *Biker1) GetAgentFromId(agentId uuid.UUID) obj.IBaseBiker {
 			}
 		}
 	}
-	return bb //WHAT TO RETURN IN GENERAL IF FOR SOME REASON INCORRECT AGENTID IS SENT???
+	return bb
 }
 
 // -------------------BIKER ACCEPTANCE FUNCTIONS------------------------
@@ -705,3 +747,67 @@ func (bb *Biker1) DecideJoining(pendingAgents []uuid.UUID) map[uuid.UUID]bool {
 // -------------------GOVERMENT CHOICE FUNCTIONS--------------------------
 
 
+// Might be unnecesary as this is the default goverment choice for us
+func (bb *Biker1) DecideDemocracy() bool {
+	fellowBikers := bb.GetFellowBikers()
+	totalOpinion := 0.0
+	reputation := bb.ourReputation()
+	for _, agent := range fellowBikers {
+		opinion, ok := bb.opinions[agent.GetID()]
+		if ok{
+			totalOpinion = totalOpinion + opinion.opinion
+		}
+	}
+	normOpinion := totalOpinion / float64(len(fellowBikers))
+	if(normOpinion > 0.5 ) || (reputation > 0.3){
+		return true
+	} else {	
+		return false
+	}
+}
+
+func (bb *Biker1) DecideLeadership() bool {
+	fellowBikers := bb.GetFellowBikers()
+	totalOpinion := 0.0
+	reputation := bb.ourReputation()
+	for _, agent := range fellowBikers {
+		opinion, ok := bb.opinions[agent.GetID()]
+		if ok{
+			totalOpinion = totalOpinion + opinion.opinion
+		}
+	}
+	normOpinion := totalOpinion / float64(len(fellowBikers))
+	if (normOpinion > 0.7 ) || (reputation > 0.5){
+		return true
+	} else {	
+		return false
+	}
+}
+
+func (bb *Biker1) DecideDictatorship() bool {
+	fellowBikers := bb.GetFellowBikers()
+	totalOpinion := 0.0
+	reputation := bb.ourReputation()
+	for _, agent := range fellowBikers {
+		opinion, ok := bb.opinions[agent.GetID()]
+		if ok{
+			totalOpinion = totalOpinion + opinion.opinion
+		}
+	}
+	normOpinion := totalOpinion / float64(len(fellowBikers))
+	if (normOpinion > 0.9 ) || (reputation > 0.7) {
+		return true
+	} else {	
+		return false
+	}
+}
+
+//--------------------END OF GOVERMENT CHOICE FUNCTIONS------------------
+
+// -------------------INSTANTIATION FUNCTIONS----------------------------
+func GetBiker1(colour utils.Colour, id uuid.UUID) *Biker1 {
+	return &Biker1{
+		BaseBiker: obj.GetBaseBiker(colour, id),
+	}
+}
+// -------------------END OF INSTANTIATION FUNCTIONS---------------------

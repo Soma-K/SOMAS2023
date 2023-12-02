@@ -8,16 +8,20 @@ import (
 	"github.com/google/uuid"
 )
 
-const BikerAgentCount = 6
+const BikerAgentCount = 10
 
 func GetAgentGenerators() []baseserver.AgentGeneratorCountPair[objects.IBaseBiker] {
 	return []baseserver.AgentGeneratorCountPair[objects.IBaseBiker]{
-		baseserver.MakeAgentGeneratorCountPair[objects.IBaseBiker](BikerAgentGenerator, BikerAgentCount),
+		baseserver.MakeAgentGeneratorCountPair[objects.IBaseBiker](Biker1AgentGenerator, BikerAgentCount),
 	}
 }
 
 func BikerAgentGenerator() objects.IBaseBiker {
 	return objects.GetIBaseBiker(utils.GenerateRandomColour(), uuid.New())
+}
+
+func Biker1AgentGenerator() objects.IBaseBiker {
+	return objects.GetBiker1(utils.GenerateRandomColour(), uuid.New())
 }
 
 func (s *Server) spawnLootBox() {
