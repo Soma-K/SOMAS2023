@@ -9,7 +9,6 @@ import (
 	"math"
 	"sort"
 
-	"github.com/MattSScott/basePlatformSOMAS/messaging"
 	"github.com/google/uuid"
 )
 
@@ -19,7 +18,8 @@ const deviatePositive = 0.1      // trust gain on non deviation
 const effortScaling = 0.1        // scaling factor for effort, highr it is the more effort chages each round
 const fairnessScaling = 0.1      // scaling factor for fairness, higher it is the more fairness changes each round
 const leaveThreshold = 0.2       // threshold for leaving
-const kickThreshhold = 0.4       // threshold for kicking
+const kickThreshold = 0.3        // threshold for kicking (need to tune)
+const trustThreshold = 0.7       // threshold for trusting (need to tune)
 const fairnessConstant = 1       // weight of fairness in opinion
 const trustconstant = 1          // weight of trust in opinion
 const effortConstant = 1         // weight of effort in opinion
@@ -604,16 +604,26 @@ func (bb *Biker1) UpdateOpinions() {
 		bb.UpdateTrust(id)
 		bb.UpdateEffort(id)
 		//bb.UpdateFairness(agent)
+		bb.UpdateOpinion(id, 1.0)
 
-		//Sorry no youre right, keep it, silly me
-		newOpinion := Opinion{
-			effort:   bb.opinions[id].effort,
-			trust:    bb.opinions[id].trust,
-			fairness: bb.opinions[id].fairness,
-			opinion:  (bb.opinions[id].trust*trustconstant+bb.opinions[id].effort*effortConstant+bb.opinions[id].fairness*fairnessConstant)/trustconstant + effortConstant + fairnessConstant,
-		}
-		bb.opinions[id] = newOpinion
 	}
+}
+
+func (bb *Biker1) UpdateOpinion(id uuid.UUID, multiplier float64) {
+	//Sorry no youre right, keep it, silly me
+	newOpinion := Opinion{
+		effort:   bb.opinions[id].effort,
+		trust:    bb.opinions[id].trust,
+		fairness: bb.opinions[id].fairness,
+		opinion:  ((bb.opinions[id].trust*trustconstant+bb.opinions[id].effort*effortConstant+bb.opinions[id].fairness*fairnessConstant)/trustconstant + effortConstant + fairnessConstant) * multiplier,
+	}
+	if newOpinion.opinion > 1 {
+		newOpinion.opinion = 1
+	} else if newOpinion.opinion < 0 {
+		newOpinion.opinion = 0
+	}
+	bb.opinions[id] = newOpinion
+
 }
 
 // Reputation = average opinion of all other agents
@@ -632,37 +642,159 @@ func (bb *Biker1) ourReputation() float64 {
 
 // -----------------MESSAGING FUNCTIONS------------------
 
-// Agent receives a who to kick off message
-func (bb *Biker1) HandleKickOffMessage(msg KickOffAgentMessage) {
-	sender := msg.sender
+// // Handle a message received from anyone, ensuring they are trustworthy and come from the right place (e.g. our bike)
+// func (bb *Biker1) VerifySender(sender obj.IBaseBiker) bool {
+// 	// check if sender is on our bike
+// 	if sender.GetBike() == bb.GetBike() {
+// 		// check if sender is trustworthy
+// 		if bb.opinions[sender.GetID()].trust > trustThreshold {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
 
-}
+// // Agent receives a who to kick off message
+// func (bb *Biker1) HandleKickOffMessage(msg KickOffAgentMessage) {
+// 	sender := msg.GetSender()
+// 	verified := bb.VerifySender(sender)
+// 	if verified {
+// 		// slightly penalise view of person who sent message
+// 		penalty := 0.9
+// 		newOpinion := Opinion{
+// 			effort:   bb.opinions[sender.GetID()].effort,
+// 			trust:    bb.opinions[sender.GetID()].trust * penalty,
+// 			fairness: bb.opinions[sender.GetID()].fairness,
+// 			opinion:  (bb.opinions[sender.GetID()].trust*trustconstant+bb.opinions[sender.GetID()].effort*effortConstant+bb.opinions[sender.GetID()].fairness*fairnessConstant)/trustconstant + effortConstant + fairnessConstant,
+// 		}
+// 		bb.opinions[sender.GetID()] = newOpinion
+// 	}
 
-// Agent receives a reputation of another agent
-func (bb *Biker1) HandleReputationMessage(msg ReputationOfAgentMessage) {
-	sender := msg.sender
+// }
 
-}
+// // Agent receives a reputation of another agent
+// func (bb *Biker1) HandleReputationMessage(msg ReputationOfAgentMessage) {
+// 	sender := msg.GetSender()
+// 	verified := bb.VerifySender(sender)
+// 	if verified {
+// 	}
+// }
 
-// Agent receives a message from another agent to join
-func (bb *Biker1) HandleJoiningMessage(msg JoiningAgentMessage) {
-	sender := msg.sender
-}
+// // Agent receives a message from another agent to join
+// func (bb *Biker1) HandleJoiningMessage(msg JoiningAgentMessage) {
+// 	sender := msg.GetSender()
+// 	// check if sender is trustworthy
+// 	if bb.opinions[sender.GetID()].trust > trustThreshold {
 
-// Agent receives a message from another agent say what lootbox they want to go to
-func (bb *Biker1) HandleLootboxMessage(msg LootboxMessage) {
-	sender := msg.sender
-}
+// 	}
 
-// Agent receives a message from another agent saying what Governance they want
-func (bb *Biker1) HandleGovernanceMessage(msg GovernanceMessage) {
-	sender := msg.sender
-}
+// }
 
-// Agent sending messages to other agents
-func GetAllMessages([]IBaseBiker) []messaging.IMessage[IBaseBiker] {
+// // Agent receives a message from another agent say what lootbox they want to go to
+// func (bb *Biker1) HandleLootboxMessage(msg LootboxMessage) {
+// 	sender := msg.GetSender()
+// 	verified := bb.VerifySender(sender)
+// 	if verified {
+// 	}
+// }
 
-}
+// // Agent receives a message from another agent saying what Governance they want
+// func (bb *Biker1) HandleGovernanceMessage(msg GovernanceMessage) {
+// 	sender := msg.GetSender()
+// 	verified := bb.VerifySender(sender)
+// 	if verified {
+// 	}
+// }
+
+// // CREATING MESSAGES
+// func (bb *Biker1) CreateKickOffMessage() KickOffAgentMessage {
+// 	// Receipients = fellowBikers
+// 	agentToKick := bb.lowestOpinionKick()
+// 	var kickDecision bool
+// 	// send kick off message if we have a low opinion of someone
+// 	if agentToKick != uuid.Nil {
+// 		kickDecision = true
+// 	} else {
+// 		kickDecision = false
+// 	}
+// 	return KickOffAgentMessage{
+// 		BaseMessage: messaging.CreateMessage[IBaseBiker](bb, bb.GetFellowBikers()),
+// 		AgentId:     agentToKick,
+// 		KickOff:     kickDecision,
+// 	}
+// }
+
+// func (bb *Biker1) CreateReputationMessage() ReputationOfAgentMessage {
+// 	// Tell the truth (for now)
+// 	// TODO: receipients = fellowBikers that we trust?
+
+// 	return ReputationOfAgentMessage{
+// 		BaseMessage: messaging.CreateMessage[IBaseBiker](bb, bb.GetFellowBikers()),
+// 		AgentId:     uuid.Nil,
+// 		Reputation:  1.0,
+// 	}
+// }
+
+// func (bb *Biker1) CreateJoiningMessage() JoiningAgentMessage {
+// 	// Tell the truth (for now)
+// 	// receipients = fellowBikers
+// 	biketoJoin := bb.ChangeBike()
+// 	gs := bb.GetGameState()
+// 	joiningBike := gs.GetMegaBikes()[biketoJoin]
+// 	return JoiningAgentMessage{
+// 		BaseMessage: messaging.CreateMessage[IBaseBiker](bb, joiningBike.GetAgents()),
+// 		AgentId:     bb.GetID(),
+// 		BikeId:      biketoJoin,
+// 	}
+// }
+// func (bb *Biker1) CreateLootboxMessage() LootboxMessage {
+// 	// Tell the truth (for now)
+// 	// receipients = fellowBikers
+// 	chosenLootbox := bb.ProposeDirection()
+// 	return LootboxMessage{
+// 		BaseMessage: messaging.CreateMessage[IBaseBiker](bb, bb.GetFellowBikers()),
+// 		LootboxId:   chosenLootbox,
+// 	}
+// }
+
+// func (bb *Biker1) CreateGoverenceMessage() GovernanceMessage {
+// 	// Tell the truth (using same logic as deciding governance for voting) (for now)
+// 	// receipients = fellowBikers
+// 	chosenGovernance := bb.DecideGovernace()
+// 	return GovernanceMessage{
+// 		BaseMessage:  messaging.CreateMessage[IBaseBiker](bb, bb.GetFellowBikers()),
+// 		BikeId:       bb.GetBike(),
+// 		GovernanceId: chosenGovernance,
+// 	}
+// }
+
+// // Agent sending messages to other agents
+// func GetAllMessages([]IBaseBiker) []messaging.IMessage[IBaseBiker] {
+// 	sendKickMessage := false
+// 	sendReputationMessage := false
+// 	sendJoiningMessage := false
+// 	sendLootboxMessage := false
+// 	sendGovernanceMessage := false
+
+// 	if sendKickMessage {
+// 		//TODO
+// 	}
+// 	if sendReputationMessage {
+// 		//TODO
+// 	}
+// 	if sendJoiningMessage {
+
+// 	}
+// 	if sendLootboxMessage {
+
+// 	}
+// 	if sendGovernanceMessage {
+
+// 	}
+// 	return
+// }
+
+// -----------------END MESSAGING FUNCTIONS------------------
 
 // ----------------CHANGE BIKE FUNCTIONS-----------------
 // define a sorter for bikes -> used to change bikes
@@ -765,7 +897,7 @@ func (bb *Biker1) GetAgentFromId(agentId uuid.UUID) obj.IBaseBiker {
 	return bb
 }
 
-// -------------------BIKER ACCEPTANCE FUNCTIONS------------------------
+// -------------------BIKER ACCEPTANCE/ KICKING FUNCTIONS------------------------
 // an agent will have to rank the agents that are trying to join and that they will try to
 func (bb *Biker1) DecideJoining(pendingAgents []uuid.UUID) map[uuid.UUID]bool {
 	//gs.GetMegaBikes()[bikeId].GetAgents()
@@ -780,11 +912,50 @@ func (bb *Biker1) DecideJoining(pendingAgents []uuid.UUID) map[uuid.UUID]bool {
 		agentColour := agent.GetColour()
 		if agentColour == bbColour {
 			decision[agentId] = true
+			sameColourReward := 1.05
+			bb.UpdateOpinion(agentId, sameColourReward)
+
 		} else {
 			decision[agentId] = false
 		}
 	}
 	return decision
+}
+
+func (bb *Biker1) lowestOpinionKick(agent uuid.UUID) uuid.UUID {
+	fellowBikers := bb.GetFellowBikers()
+	lowestOpinion := kickThreshold
+	var worstAgent uuid.UUID
+	for _, agent := range fellowBikers {
+		if bb.opinions[agent.GetID()].opinion < lowestOpinion {
+			lowestOpinion = bb.opinions[agent.GetID()].opinion
+			worstAgent = agent.GetID()
+		}
+	}
+	// if we want to kick someone based on our threshold, return their id, else return nil
+	if lowestOpinion < kickThreshold {
+		return worstAgent
+	}
+	return uuid.Nil
+}
+
+func (bb *Biker1) DecideKick(agent uuid.UUID) int {
+	if bb.opinions[agent].opinion < kickThreshold {
+		return 1
+	}
+	return 0
+}
+
+func (bb *Biker1) VoteForKickout() map[uuid.UUID]int {
+	voteResults := make(map[uuid.UUID]int)
+	fellowBikers := bb.GetFellowBikers()
+	for _, agent := range fellowBikers {
+		agentID := agent.GetID()
+		if agentID != bb.GetID() {
+			// random votes to other agents
+			voteResults[agentID] = bb.DecideKick(agentID)
+		}
+	}
 }
 
 //--------------------END OF BIKER ACCEPTANCE FUNCTIONS-------------------
@@ -798,6 +969,7 @@ func (bb *Biker1) DecideGovernace() int {
 	} else if bb.DecideLeadership() {
 		return 1
 	} else {
+		// Democracy
 		return 0
 	}
 }
