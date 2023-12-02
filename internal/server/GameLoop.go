@@ -16,14 +16,14 @@ func (s *Server) RunGameLoop() {
 
 	// take care of agents that want to leave the bike and of the acceptance/ expulsion process
 	fmt.Printf("BeforeRunBikeSwicth")
-	s.RunBikeSwitch()
+	s.RunBikeSwitch(gameState)
 	fmt.Printf("BeforeRunActionProcess")
 
 	// get the direction decisions and pedalling forces
 	s.RunActionProcess()
 	fmt.Printf("BeforeUpdateGameState")
 	// The Audi makes a decision
-	s.audi.UpdateGameState(s)
+	s.audi.UpdateGameState(gameState)
 	fmt.Printf("Before The for loop")
 	// Move the mega bikes
 	for _, bike := range s.megaBikes {
@@ -86,7 +86,7 @@ func (s *Server) HandleKickoutProcess() {
 func (s *Server) GetLeavingDecisions(gameState objects.IGameState) {
 	for agentId, agent := range s.GetAgentMap() {
 		fmt.Printf("Agent %s updating gamestate \n", agentId)
-		agent.UpdateGameState(s)
+		agent.UpdateGameState(gameState)
 		fmt.Printf("Agent %s updating internal state \n", agentId)
 		agent.UpdateAgentInternalState()
 		fmt.Printf("Agent %s deciding action \n", agentId)
