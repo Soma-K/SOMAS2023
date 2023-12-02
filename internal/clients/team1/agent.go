@@ -9,6 +9,7 @@ import (
 	"math"
 	"sort"
 
+	"github.com/MattSScott/basePlatformSOMAS/messaging"
 	"github.com/google/uuid"
 )
 
@@ -627,11 +628,41 @@ func (bb *Biker1) ourReputation() float64 {
 	return reputation
 }
 
-func (bb * Biker1) HandleReputationMessage {
-	
+// ----------------END OF OPINION FUNCTIONS--------------
+
+// -----------------MESSAGING FUNCTIONS------------------
+
+// Agent receives a who to kick off message
+func (bb *Biker1) HandleKickOffMessage(msg KickOffAgentMessage) {
+	sender := msg.sender
+
 }
 
-// ----------------END OF OPINION FUNCTIONS--------------
+// Agent receives a reputation of another agent
+func (bb *Biker1) HandleReputationMessage(msg ReputationOfAgentMessage) {
+	sender := msg.sender
+
+}
+
+// Agent receives a message from another agent to join
+func (bb *Biker1) HandleJoiningMessage(msg JoiningAgentMessage) {
+	sender := msg.sender
+}
+
+// Agent receives a message from another agent say what lootbox they want to go to
+func (bb *Biker1) HandleLootboxMessage(msg LootboxMessage) {
+	sender := msg.sender
+}
+
+// Agent receives a message from another agent saying what Governance they want
+func (bb *Biker1) HandleGovernanceMessage(msg GovernanceMessage) {
+	sender := msg.sender
+}
+
+// Agent sending messages to other agents
+func GetAllMessages([]IBaseBiker) []messaging.IMessage[IBaseBiker] {
+
+}
 
 // ----------------CHANGE BIKE FUNCTIONS-----------------
 // define a sorter for bikes -> used to change bikes
