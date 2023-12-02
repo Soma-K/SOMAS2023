@@ -974,6 +974,7 @@ func (bb *Biker1) VoteForKickout() map[uuid.UUID]int {
 			voteResults[agentID] = bb.DecideKick(agentID)
 		}
 	}
+	return voteResults
 }
 
 //--------------------END OF BIKER ACCEPTANCE FUNCTIONS-------------------
