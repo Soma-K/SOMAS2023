@@ -396,9 +396,9 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 	}
 	if (avg_opinion < leaveThreshold) || bb.dislikeVote {
 		bb.dislikeVote = false
-		return bb.DecideAction() //THIS SHIT JUST RETURNS PEDAL (MVP) see BaseBiker.go
+		return 1 //change bike
 	} else {
-		return bb.DecideAction()
+		return 0 //pedal
 	}
 }
 
