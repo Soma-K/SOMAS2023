@@ -11,8 +11,8 @@ import (
 	"github.com/google/uuid"
 )
 
-const LootBoxCount = 100
-const MegaBikeCount = 1 //BikerAgentCount / 2
+const LootBoxCount = BikerAgentCount * 3
+const MegaBikeCount = BikerAgentCount / 2
 const BikerAgentCount = 6
 
 type IBaseBikerServer interface {

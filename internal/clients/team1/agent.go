@@ -59,12 +59,12 @@ func (bb *Biker1) GetBikeInstance() obj.IMegaBike {
 func (bb *Biker1) GetLootLocation(id uuid.UUID) utils.Coordinates {
 	gs := bb.GetGameState()
 	lootboxes := gs.GetLootBoxes()
+	fmt.Printf("ID: %v", id)
 	lootbox := lootboxes[id]
 	return lootbox.GetPosition()
 }
 
 //-------------------END OF SETTERS AND GETTERS----------------------
-
 // part 1:
 // the biker itself doesn't technically have a location (as it's on the map only when it's on a bike)
 // in fact this function is only called when the biker needs to make a decision about the pedaling forces
@@ -88,7 +88,6 @@ func calculateSelfishnessScore(success float64, relationship float64) float64 {
 }
 
 // ---------------LOOT ALLOCATION FUNCTIONS------------------
-// TODO FIX THIS
 // through this function the agent submits their desired allocation of resources
 // in the MVP each agent returns 1 whcih will cause the distribution to be equal across all of them
 func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
@@ -124,8 +123,14 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 
 	for _, agent := range fellowBikers {
 		if agent.GetID() != bb.GetID() {
-			relativeSuccess := float64((agent.GetPoints() - bb.GetPoints()) / (bb.GetPoints() + agent.GetPoints())) //-1 to 1
-			relativeSuccess = (relativeSuccess + 1.0) / 2.0                                                         //shift to 0-1
+			pointSum := bb.GetPoints() + agent.GetPoints()
+			var relativeSuccess float64
+			if pointSum == 0 {
+				relativeSuccess = 0.5
+			}else{
+				relativeSuccess = float64((agent.GetPoints() - bb.GetPoints()) / (pointSum)) //-1 to 1
+				relativeSuccess = (relativeSuccess + 1.0) / 2.0 //shift to 0 to 1   
+			}
 			id := agent.GetID()
 			ourRelationship := bb.opinions[id].opinion
 			selfishnessScore[id] = calculateSelfishnessScore(relativeSuccess, ourRelationship)
@@ -347,7 +352,6 @@ func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.L
 	// for each box, add 1 to value of key=box_id in dic
 	proposalVotes := make(map[uuid.UUID]int)
 	for _, proposal := range proposals {
-
 		_, ok := proposalVotes[proposal]
 		if !ok {
 			proposalVotes[proposal] = 1
@@ -355,12 +359,14 @@ func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.L
 			proposalVotes[proposal] += 1
 		}
 	}
+	distToBoxMap := make(map[uuid.UUID]float64)
 	for _, proposal := range proposals {
-		distToBox := bb.distanceToReachableBox(proposal)
-		if distToBox <= maxDist { //if reachable
+		distToBoxMap[proposal] = bb.distanceToReachableBox(proposal)
+		if distToBoxMap[proposal] <= maxDist { //if reachable
 			// if box is our colour and number of proposals is majority, make it 1, rest 0, return
 			if bb.GetGameState().GetLootBoxes()[proposal].GetColour() == bb.GetColour() {
 				if proposalVotes[proposal] > len(proposals)/2 {
+
 					for _, proposal1 := range proposals {
 						if proposal1 == proposal {
 							votes[proposal1] = 1
@@ -371,21 +377,54 @@ func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.L
 					return votes
 				}
 			}
-			// calculate energy left if we went here
-			remainingEnergy := bb.findRemainingEnergyAfterReachingBox(proposal)
-			// find nearest reachable boxes from current coordinate
-			isColourNear := bb.checkBoxNearColour(proposal, remainingEnergy)
-			// assign score of number of votes for this box if our colour is nearby
-			//TODO FIX THIS
-			if isColourNear {
-				votes[proposal] = float64(proposalVotes[proposal])
-				fmt.Printf("colour near\n")
-			} else {
-				fmt.Printf("colour not near\n")
-				votes[proposal] = 0.0
-			}
+		}
+		// calculate energy left if we went here
+		remainingEnergy := bb.findRemainingEnergyAfterReachingBox(proposal)
+		// find nearest reachable boxes from current coordinate
+		isColourNear := bb.checkBoxNearColour(proposal, remainingEnergy)
+		// assign score of number of votes for this box if our colour is nearby
+		if isColourNear {
+			votes[proposal] = float64(proposalVotes[proposal])
+		} else {
+			votes[proposal] = 0.0
 		}
 	}
+
+	// Check if all votes are 0
+	allVotesZero := true
+	for _, value := range votes {
+		if value != 0 {
+			allVotesZero = false
+			break
+		}
+	}
+
+	// If all votes are 0, nominate the nearest box
+	if allVotesZero {
+		minDist := math.MaxFloat64
+		var nearestBox uuid.UUID
+		for _, proposal := range proposals {
+			if distToBoxMap[proposal] < minDist {
+				minDist = distToBoxMap[proposal]
+				nearestBox = proposal
+			}
+		}
+		votes[nearestBox] = 1
+		return votes
+	}
+
+	// Normalize the values in votes so that the values sum to 1
+	sum := 0.0
+	for _, value := range votes {
+		sum += value
+	}
+	if sum == 0 {
+		return votes
+	}
+	for key := range votes {
+		votes[key] /= sum
+	}
+
 	fmt.Printf("votes: %v\n", votes)
 
 	return votes
@@ -410,7 +449,7 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 // -----------------PEDALLING FORCE FUNCTIONS------------------
 func (bb *Biker1) getPedalForce() float64 {
 	//can be made more complex
-	return utils.BikerMaxForce * bb.GetEnergyLevel()
+	return utils.BikerMaxForce * 0.3///bb.GetEnergyLevel()
 }
 
 // determine the forces (pedalling, breaking and turning)
@@ -418,8 +457,7 @@ func (bb *Biker1) getPedalForce() float64 {
 // location of the nearest lootboX
 // the function is passed in the id of the voted lootbox, for now ignored
 func (bb *Biker1) DecideForce(direction uuid.UUID) {
-	fmt.Printf("direction: %s", direction)
-	fmt.Printf("direction %v", direction)
+	fmt.Printf("\nscore: %v \n", bb.GetPoints())
 	if bb.recentVote != nil {
 		if bb.recentVote[direction] < leavingThreshold {
 			bb.dislikeVote = true
