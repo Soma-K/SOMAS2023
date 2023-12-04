@@ -487,11 +487,26 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
 	agent := bb.GetAgentFromId(agentID)
 	fellowBikers := bb.GetFellowBikers()
-	totalPedalForce := 0.0
+	//totalPedalForce := 0.0//GET THIS SOMEHOW FROM BIKE ACCELERATION?
+	//for _, agent := range fellowBikers {
+	//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+
+	//}
+
+	optimalPedal := 0.5 //for now!!
+	optimalForce := optimalPedal * float64(len(fellowBikers))
+	remainingForce := optimalForce - totalPedalForce
+	//what to do if it is more than what is optimal?
 	for _, agent := range fellowBikers {
-		totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+		//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+		//if bike colour = agent colour, p of not pedalling = 0
 	}
-	avgForce := totalPedalForce / float64(len(fellowBikers))
+	//avgForce := totalPedalForce / float64(len(fellowBikers))
+
+	bikeId := bb.GetBike()
+	gs := bb.GetGameState()
+	totalPedalForce := gs.GetMegaBikes()[bikeId].GetPhysicalState().Acceleration //MULTIPLY BY MASS @ROHAN
+	//
 	//effort expectation is scaled by their energy level -- should it be? (*agent.GetEnergyLevel())
 	finalEffort := bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal-avgForce)*effortScaling
 
