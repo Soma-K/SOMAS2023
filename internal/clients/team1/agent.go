@@ -1093,74 +1093,74 @@ func (bb *Biker1) GetAgentFromId(agentId uuid.UUID) obj.IBaseBiker {
 // -------------------GOVERMENT CHOICE FUNCTIONS--------------------------
 
 // Not implemented on Server yet so this is just a placeholder
-func (bb *Biker1) DecideGovernance() utils.Governance {
-	if bb.DecideDictatorship() {
-		fmt.Printf("We are a dictatorship \n")
-		return 2
-	} else if bb.DecideLeadership() {
-		fmt.Printf("We are a leadership \n")
-		return 1
-	} else {
-		// Democracy
-		fmt.Printf("We are a democracy \n")
-		return 0
-	}
-}
+// func (bb *Biker1) DecideGovernance() utils.Governance {
+// 	if bb.DecideDictatorship() {
+// 		fmt.Printf("We are a dictatorship \n")
+// 		return 2
+// 	} else if bb.DecideLeadership() {
+// 		fmt.Printf("We are a leadership \n")
+// 		return 1
+// 	} else {
+// 		// Democracy
+// 		fmt.Printf("We are a democracy \n")
+// 		return 0
+// 	}
+// }
 
-// Might be unnecesary as this is the default goverment choice for us
-func (bb *Biker1) DecideDemocracy() bool {
-	founding_agents := bb.GetAllAgents()
-	totalOpinion := 0.0
-	reputation := bb.ourReputation()
-	for _, agent := range founding_agents {
-		opinion, ok := bb.opinions[agent.GetID()]
-		if ok {
-			totalOpinion = totalOpinion + opinion.opinion
-		}
-	}
-	normOpinion := totalOpinion / float64(len(founding_agents))
-	if (normOpinion > democracyOpinonThreshold) || (reputation > democracyReputationThreshold) {
-		return true
-	} else {
-		return false
-	}
-}
+// // Might be unnecesary as this is the default goverment choice for us
+// func (bb *Biker1) DecideDemocracy() bool {
+// 	founding_agents := bb.GetAllAgents()
+// 	totalOpinion := 0.0
+// 	reputation := bb.ourReputation()
+// 	for _, agent := range founding_agents {
+// 		opinion, ok := bb.opinions[agent.GetID()]
+// 		if ok {
+// 			totalOpinion = totalOpinion + opinion.opinion
+// 		}
+// 	}
+// 	normOpinion := totalOpinion / float64(len(founding_agents))
+// 	if (normOpinion > democracyOpinonThreshold) || (reputation > democracyReputationThreshold) {
+// 		return true
+// 	} else {
+// 		return false
+// 	}
+// }
 
-func (bb *Biker1) DecideLeadership() bool {
-	founding_agents := bb.GetAllAgents()
-	totalOpinion := 0.0
-	reputation := bb.ourReputation()
-	for _, agent := range founding_agents {
-		opinion, ok := bb.opinions[agent.GetID()]
-		if ok {
-			totalOpinion = totalOpinion + opinion.opinion
-		}
-	}
-	normOpinion := totalOpinion / float64(len(founding_agents))
-	if (normOpinion > leadershipOpinionThreshold) || (reputation > leadershipReputationThreshold) {
-		return true
-	} else {
-		return false
-	}
-}
+// func (bb *Biker1) DecideLeadership() bool {
+// 	founding_agents := bb.GetAllAgents()
+// 	totalOpinion := 0.0
+// 	reputation := bb.ourReputation()
+// 	for _, agent := range founding_agents {
+// 		opinion, ok := bb.opinions[agent.GetID()]
+// 		if ok {
+// 			totalOpinion = totalOpinion + opinion.opinion
+// 		}
+// 	}
+// 	normOpinion := totalOpinion / float64(len(founding_agents))
+// 	if (normOpinion > leadershipOpinionThreshold) || (reputation > leadershipReputationThreshold) {
+// 		return true
+// 	} else {
+// 		return false
+// 	}
+// }
 
-func (bb *Biker1) DecideDictatorship() bool {
-	founding_agents := bb.GetAllAgents()
-	totalOpinion := 0.0
-	reputation := bb.ourReputation()
-	for _, agent := range founding_agents {
-		opinion, ok := bb.opinions[agent.GetID()]
-		if ok {
-			totalOpinion = totalOpinion + opinion.opinion
-		}
-	}
-	normOpinion := totalOpinion / float64(len(founding_agents))
-	if (normOpinion > dictatorshipOpinionThreshold) || (reputation > dictatorshipReputationThreshold) {
-		return true
-	} else {
-		return false
-	}
-}
+// func (bb *Biker1) DecideDictatorship() bool {
+// 	founding_agents := bb.GetAllAgents()
+// 	totalOpinion := 0.0
+// 	reputation := bb.ourReputation()
+// 	for _, agent := range founding_agents {
+// 		opinion, ok := bb.opinions[agent.GetID()]
+// 		if ok {
+// 			totalOpinion = totalOpinion + opinion.opinion
+// 		}
+// 	}
+// 	normOpinion := totalOpinion / float64(len(founding_agents))
+// 	if (normOpinion > dictatorshipOpinionThreshold) || (reputation > dictatorshipReputationThreshold) {
+// 		return true
+// 	} else {
+// 		return false
+// 	}
+// }
 
 // ----------------------LEADER/DICTATOR VOTING FUNCTIONS------------------
 // func (bb *Biker1) VoteLeader() voting.IdVoteMap {
