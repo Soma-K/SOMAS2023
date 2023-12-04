@@ -9,21 +9,12 @@ import (
 	"github.com/google/uuid"
 )
 
-func (s *Server) RunRulerAction(bike objects.IMegaBike, governance utils.Governance) uuid.UUID {
+func (s *Server) RunRulerAction(bike objects.IMegaBike) uuid.UUID {
 	// vote for dictator
-	agents := bike.GetAgents()
-	ruler := s.RulerElection(agents, governance)
-	// communicate dictator
-	bike.SetRuler(ruler)
+	agents := s.GetAgentMap()
+	ruler := agents[bike.GetRuler()]
 	// get dictators direction choice
-	rulerAgent := s.GetAgentMap()[ruler]
-	var direction uuid.UUID
-	switch governance {
-	case utils.Dictatorship:
-		direction = rulerAgent.DictateDirection()
-	case utils.Leadership:
-		direction = rulerAgent.LeadDirection()
-	}
+	direction := ruler.DictateDirection()
 	return direction
 }
 
@@ -50,8 +41,7 @@ func (s *Server) RulerElection(agents []objects.IBaseBiker, governance utils.Gov
 	return ruler
 }
 
-func (s *Server) RunDemocraticAction(bike objects.IMegaBike) uuid.UUID {
-	fmt.Printf("In Run Decmocratic Action \n")
+func (s *Server) RunDemocraticAction(bike objects.IMegaBike, weights map[uuid.UUID]float64) uuid.UUID {
 	// map of the proposed lootboxes by bike (for each bike a list of lootbox proposals is made, with one lootbox proposed by each agent on the bike)
 	agents := bike.GetAgents()
 	proposedDirections := make(map[uuid.UUID]uuid.UUID)
@@ -73,7 +63,6 @@ func (s *Server) RunDemocraticAction(bike objects.IMegaBike) uuid.UUID {
 	fmt.Printf("final votes %v", finalVotes)
 
 	// ---------------------------VOTING ROUTINE - STEP 3 --------------
-	direction := s.GetWinningDirection(finalVotes)
-	fmt.Printf("winning direction %v", direction)
+	direction := s.GetWinningDirection(finalVotes, weights)
 	return direction
 }
