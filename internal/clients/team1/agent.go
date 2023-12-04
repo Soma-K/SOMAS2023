@@ -542,7 +542,6 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 		}
 		bb.SetForces(escapeAudiForces)
 	}
-
 }
 
 // -----------------END OF PEDALLING FORCE FUNCTIONS------------------
