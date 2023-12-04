@@ -64,7 +64,7 @@ func (bb *Biker1) GetLootLocation(id uuid.UUID) utils.Coordinates {
 	return lootbox.GetPosition()
 }
 
-//-------------------END OF SETTERS AND GETTERS----------------------
+// -------------------END OF SETTERS AND GETTERS----------------------
 // part 1:
 // the biker itself doesn't technically have a location (as it's on the map only when it's on a bike)
 // in fact this function is only called when the biker needs to make a decision about the pedaling forces
@@ -127,9 +127,9 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 			var relativeSuccess float64
 			if pointSum == 0 {
 				relativeSuccess = 0.5
-			}else{
+			} else {
 				relativeSuccess = float64((agent.GetPoints() - bb.GetPoints()) / (pointSum)) //-1 to 1
-				relativeSuccess = (relativeSuccess + 1.0) / 2.0 //shift to 0 to 1   
+				relativeSuccess = (relativeSuccess + 1.0) / 2.0                              //shift to 0 to 1
 			}
 			id := agent.GetID()
 			ourRelationship := bb.opinions[id].opinion
@@ -286,6 +286,21 @@ func (bb *Biker1) nearestLootColour() (uuid.UUID, float64) {
 	}
 	return nearestBox, shortestDist
 }
+func (bb *Biker1) ProposeDirection1() uuid.UUID {
+	currLocation := bb.GetLocation()
+	shortestDist := math.MaxFloat64
+	currDist := 0.0
+	nearestBox := bb.nearestLoot()
+	for id, loot := range bb.GetGameState().GetLootBoxes() {
+		lootPos := loot.GetPosition()
+		currDist = physics.ComputeDistance(currLocation, lootPos)
+		if (currDist < shortestDist) && (loot.GetColour() == bb.GetColour()) {
+			nearestBox = id
+			shortestDist = currDist
+		}
+	}
+	return nearestBox
+}
 
 func (bb *Biker1) ProposeDirection() uuid.UUID {
 	// all logic for nominations goes in here
@@ -326,6 +341,25 @@ func (bb *Biker1) findRemainingEnergyAfterReachingBox(box uuid.UUID) float64 {
 	dist := physics.ComputeDistance(bb.GetLocation(), bb.GetGameState().GetLootBoxes()[box].GetPosition())
 	remainingEnergy := bb.distanceToEnergy(dist, bb.GetEnergyLevel())
 	return remainingEnergy
+}
+
+// Always vote for the nearest box to the bike
+func (bb *Biker1) FinalDirectionVote1(proposals map[uuid.UUID]uuid.UUID) voting.LootboxVoteMap {
+	votes := make(voting.LootboxVoteMap)
+	shortestDist := math.MaxFloat64
+	closestProposal := uuid.UUID{}
+	for _, proposal := range proposals {
+		// find nearest box out of all the proposals and vote for it
+		dist := physics.ComputeDistance(bb.GetLocation(), bb.GetGameState().GetLootBoxes()[proposal].GetPosition())
+		if dist < shortestDist {
+			shortestDist = dist
+			closestProposal = proposal
+		}
+		votes[proposal] = 0.0
+	}
+	votes[closestProposal] = 1.0
+	fmt.Printf("\n agent %s votes %v \n", bb.GetID(), votes)
+	return votes
 }
 
 // this function will contain the agent's strategy on deciding which direction to go to
@@ -449,7 +483,7 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 // -----------------PEDALLING FORCE FUNCTIONS------------------
 func (bb *Biker1) getPedalForce() float64 {
 	//can be made more complex
-	return utils.BikerMaxForce * 0.3///bb.GetEnergyLevel()
+	return utils.BikerMaxForce * 0.3 ///bb.GetEnergyLevel()
 }
 
 // determine the forces (pedalling, breaking and turning)
@@ -473,7 +507,7 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 		targetPos := lootBoxes[direction].GetPosition()
 		deltaX := targetPos.X - currLocation.X
 		deltaY := targetPos.Y - currLocation.Y
-		angle := math.Atan2(deltaX, deltaY)
+		angle := math.Atan2(deltaY, deltaX)
 		normalisedAngle := angle / math.Pi
 
 		turningDecision := utils.TurningDecision{
@@ -491,7 +525,7 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 		deltaX := audiPos.X - currLocation.X
 		deltaY := audiPos.Y - currLocation.Y
 		// Steer in opposite direction to audi
-		angle := math.Atan2(-deltaX, -deltaY)
+		angle := math.Atan2(-deltaY, -deltaX)
 		normalisedAngle := angle / math.Pi
 		turningDecision := utils.TurningDecision{
 			SteerBike:     true,

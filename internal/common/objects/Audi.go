@@ -3,8 +3,9 @@ package objects
 import (
 	phy "SOMAS2023/internal/common/physics"
 	"SOMAS2023/internal/common/utils"
-	"github.com/google/uuid"
 	"math"
+
+	"github.com/google/uuid"
 )
 
 type IAudi interface {

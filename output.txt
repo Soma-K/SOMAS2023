@@ -1,0 +1,2264 @@
+Hello Agents
+Server initialised with 1 agents 
+
+Game Loop 0 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbjectCollision detected between MegaBike 27d5bc9d-0df4-40d7-8702-518c311de04e and LootBox 8d6f5eaf-f65d-4444-84f2-9fce7b9298b4 
+Collision detected between MegaBike 9e1a571c-dc1b-494b-831b-8f67ef9d66af and LootBox f40168e8-5204-4485-85c4-f2201fd03ddb 
+
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 0 completed.
+Game Loop 1 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 1 completed.
+Game Loop 2 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 2 completed.
+Game Loop 3 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 3 completed.
+Game Loop 4 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 4 completed.
+Game Loop 5 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 5 completed.
+Game Loop 6 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 6 completed.
+Game Loop 7 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 7 completed.
+Game Loop 8 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 8 completed.
+Game Loop 9 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 9 completed.
+Game Loop 10 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 10 completed.
+Game Loop 11 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 11 completed.
+Game Loop 12 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 12 completed.
+Game Loop 13 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 13 completed.
+Game Loop 14 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 14 completed.
+Game Loop 15 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 15 completed.
+Game Loop 16 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 16 completed.
+Game Loop 17 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 17 completed.
+Game Loop 18 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 18 completed.
+Game Loop 19 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 19 completed.
+Game Loop 20 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 20 completed.
+Game Loop 21 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 21 completed.
+Game Loop 22 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 22 completed.
+Game Loop 23 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 23 completed.
+Game Loop 24 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 24 completed.
+Game Loop 25 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 25 completed.
+Game Loop 26 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 26 completed.
+Game Loop 27 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 27 completed.
+Game Loop 28 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 28 completed.
+Game Loop 29 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 29 completed.
+Game Loop 30 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 30 completed.
+Game Loop 31 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 31 completed.
+Game Loop 32 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 32 completed.
+Game Loop 33 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 33 completed.
+Game Loop 34 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 34 completed.
+Game Loop 35 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 35 completed.
+Game Loop 36 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 36 completed.
+Game Loop 37 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 37 completed.
+Game Loop 38 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 38 completed.
+Game Loop 39 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 39 completed.
+Game Loop 40 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 40 completed.
+Game Loop 41 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 41 completed.
+Game Loop 42 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 42 completed.
+Game Loop 43 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 43 completed.
+Game Loop 44 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 44 completed.
+Game Loop 45 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 45 completed.
+Game Loop 46 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 46 completed.
+Game Loop 47 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 47 completed.
+Game Loop 48 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 48 completed.
+Game Loop 49 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 49 completed.
+Game Loop 50 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 50 completed.
+Game Loop 51 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 51 completed.
+Game Loop 52 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 52 completed.
+Game Loop 53 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 53 completed.
+Game Loop 54 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 54 completed.
+Game Loop 55 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 55 completed.
+Game Loop 56 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 56 completed.
+Game Loop 57 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 57 completed.
+Game Loop 58 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 58 completed.
+Game Loop 59 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 59 completed.
+Game Loop 60 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 60 completed.
+Game Loop 61 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 61 completed.
+Game Loop 62 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 62 completed.
+Game Loop 63 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 63 completed.
+Game Loop 64 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 64 completed.
+Game Loop 65 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 65 completed.
+Game Loop 66 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 66 completed.
+Game Loop 67 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 67 completed.
+Game Loop 68 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 68 completed.
+Game Loop 69 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 69 completed.
+Game Loop 70 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 70 completed.
+Game Loop 71 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 71 completed.
+Game Loop 72 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 72 completed.
+Game Loop 73 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 73 completed.
+Game Loop 74 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 74 completed.
+Game Loop 75 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 75 completed.
+Game Loop 76 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 76 completed.
+Game Loop 77 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 77 completed.
+Game Loop 78 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 78 completed.
+Game Loop 79 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 79 completed.
+Game Loop 80 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 80 completed.
+Game Loop 81 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 81 completed.
+Game Loop 82 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 82 completed.
+Game Loop 83 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 updating gamestate 
+BeforeRunActionProcessrun action process
+In Run Decmocratic Action 
+proposedDirections map[14b7e282-3c43-479f-a97c-f9008f30ada8:9f6220c1-07bb-4051-bc35-542a62dd23fa]
+ agent 14b7e282-3c43-479f-a97c-f9008f30ada8 votes map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1] 
+final votes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+IfinalVotes map[14b7e282-3c43-479f-a97c-f9008f30ada8:map[9f6220c1-07bb-4051-bc35-542a62dd23fa:1]]
+
+Winner is 9f6220c1-07bb-4051-bc35-542a62dd23fa
+winning direction 9f6220c1-07bb-4051-bc35-542a62dd23fa
+score: 0 
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbjectAgent 14b7e282-3c43-479f-a97c-f9008f30ada8 got game ended
+
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 83 completed.
+Game Loop 84 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 84 completed.
+Game Loop 85 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 85 completed.
+Game Loop 86 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 86 completed.
+Game Loop 87 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 87 completed.
+Game Loop 88 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 88 completed.
+Game Loop 89 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 89 completed.
+Game Loop 90 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 90 completed.
+Game Loop 91 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 91 completed.
+Game Loop 92 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 92 completed.
+Game Loop 93 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 93 completed.
+Game Loop 94 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 94 completed.
+Game Loop 95 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 95 completed.
+Game Loop 96 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 96 completed.
+Game Loop 97 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 97 completed.
+Game Loop 98 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 98 completed.
+Game Loop 99 running... 
+ 
+Main game loop running...
+
+BeforeRunBikeSwicthBeforeRunActionProcessrun action process
+BeforeUpdateGameStateBefore The for loopBeforeMovePhysiscsOpbject
+Main game loop finished.
+
+Messaging session started...
+
+
+Messaging session completed
+
+Game Loop 99 completed.
+Statistics:
+{
+    "agent_lifetime": {
+        "14b7e282-3c43-479f-a97c-f9008f30ada8": 83
+    },
+    "agent_energy_average": {
+        "14b7e282-3c43-479f-a97c-f9008f30ada8": 2.480000000000004
+    },
+    "agent_energy_variance": {
+        "14b7e282-3c43-479f-a97c-f9008f30ada8": 2.0664000000000007
+    },
+    "agent_points_average": {
+        "14b7e282-3c43-479f-a97c-f9008f30ada8": 0
+    },
+    "agent_points_variance": {
+        "14b7e282-3c43-479f-a97c-f9008f30ada8": 0
+    }
+}
