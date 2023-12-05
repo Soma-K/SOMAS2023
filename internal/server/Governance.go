@@ -4,6 +4,7 @@ import (
 	"SOMAS2023/internal/common/objects"
 	"SOMAS2023/internal/common/utils"
 	"SOMAS2023/internal/common/voting"
+	"fmt"
 
 	"github.com/google/uuid"
 )
@@ -62,5 +63,6 @@ func (s *Server) RunDemocraticAction(bike objects.IMegaBike, weights map[uuid.UU
 
 	// ---------------------------VOTING ROUTINE - STEP 3 --------------
 	direction := s.GetWinningDirection(finalVotes, weights)
+	fmt.Printf("The winning direction is %v\n", direction)
 	return direction
 }

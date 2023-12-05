@@ -3,6 +3,8 @@ package objects
 import (
 	utils "SOMAS2023/internal/common/utils"
 	voting "SOMAS2023/internal/common/voting"
+	"fmt"
+
 	// "fmt"
 	"math"
 
@@ -270,6 +272,7 @@ func (bb *BaseBiker) UpdateGameState(gameState IGameState) {
 
 // default implementation returns the id of the nearest lootbox
 func (bb *BaseBiker) ProposeDirection() uuid.UUID {
+	fmt.Printf("We are in BaseBiker Propose Direction: %v\n", bb.nearestLoot())
 	return bb.nearestLoot()
 }
 
@@ -345,6 +348,7 @@ func (bb *BaseBiker) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) votin
 			votes[proposal] = normalDist
 		}
 	}
+	fmt.Printf("BaseBiker Return Vinal Votes: %v\n", votes)
 	return votes
 }
 
@@ -357,7 +361,7 @@ func (bb *BaseBiker) VoteForKickout() map[uuid.UUID]int {
 		agentID := agent.GetID()
 		if agentID != bb.GetID() {
 			// random votes to other agents
-			voteResults[agentID] = rand.Intn(2) // randomly assigns 0 or 1 vote
+			voteResults[agentID] = 0 // randomly assigns 0 or 1 vote
 		}
 	}
 
