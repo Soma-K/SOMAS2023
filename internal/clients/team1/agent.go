@@ -108,13 +108,18 @@ func calculateSelfishnessScore(success float64, relationship float64) float64 {
 }
 
 func (bb *Biker1) GetSelfishness(agent obj.IBaseBiker) float64 {
-	pointSum := bb.GetPoints() + agent.GetPoints()
+	maxPoints := 0
+	for _, agents := range bb.GetFellowBikers() {
+		if agents.GetPoints() > maxPoints {
+			maxPoints = agents.GetPoints()
+		}
+	}
 	var relativeSuccess float64
-	if pointSum == 0 {
+	if maxPoints == 0 {
 		relativeSuccess = 0.5
 	} else {
-		relativeSuccess = float64((agent.GetPoints() - bb.GetPoints()) / (pointSum)) //-1 to 1
-		relativeSuccess = (relativeSuccess + 1.0) / 2.0                              //shift to 0 to 1
+		relativeSuccess = float64((agent.GetPoints() - bb.GetPoints()) / (maxPoints)) //-1 to 1
+		relativeSuccess = (relativeSuccess + 1.0) / 2.0                               //shift to 0 to 1
 	}
 	id := agent.GetID()
 	ourRelationship := bb.opinions[id].opinion
@@ -125,6 +130,7 @@ func (bb *Biker1) GetSelfishness(agent obj.IBaseBiker) float64 {
 // through this function the agent submits their desired allocation of resources
 // in the MVP each agent returns 1 whcih will cause the distribution to be equal across all of them
 func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
+	fmt.Printf("START OF AGENT %s DECIDE ALLOCATION\n", bb.GetID())
 	fellowBikers := bb.GetFellowBikers()
 
 	sumEnergyNeeds := 0.0
@@ -133,6 +139,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 
 	for _, agent := range fellowBikers {
 		energyNeed := 1.0 - agent.GetEnergyLevel()
+		fmt.Printf("Agent %s Energy Need %v\n", agent.GetID(), energyNeed)
 		helpfulAllocation[agent.GetID()] = energyNeed
 		selfishAllocation[agent.GetID()] = energyNeed
 		sumEnergyNeeds = sumEnergyNeeds + energyNeed
@@ -140,6 +147,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 
 	for agentId, _ := range helpfulAllocation {
 		helpfulAllocation[agentId] /= sumEnergyNeeds
+		fmt.Printf("Agent %s Helpful Allocation %v\n", agentId, helpfulAllocation[agentId])
 	}
 
 	sumEnergyNeeds -= (1.0 - bb.GetEnergyLevel()) // remove our energy need from the sum
@@ -148,6 +156,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 		if agentId != bb.GetID() {
 			selfishAllocation[agentId] = (selfishAllocation[agentId] / sumEnergyNeeds) * bb.GetEnergyLevel() //NB assuming energy is 0-1
 		}
+		fmt.Printf("Agent %s Selfish Allocation %v\n", agentId, selfishAllocation[agentId])
 	}
 
 	//3/4) Look in success vector to see relative success of each agent and calculate selfishness score using suc-rel chart (0-1)
@@ -158,6 +167,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 	for _, agent := range fellowBikers {
 		if agent.GetID() != bb.GetID() {
 			score := bb.GetSelfishness(agent)
+			fmt.Printf("Agent %s Selfishness Score %v\n", agent.GetID(), score)
 			id := agent.GetID()
 			selfishnessScore[id] = score
 			runningScore = runningScore + selfishnessScore[id]
@@ -165,6 +175,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 	}
 
 	selfishnessScore[bb.GetID()] = runningScore / float64((len(fellowBikers) - 1))
+	fmt.Printf("Agent %s Selfishness Score (OWN) %v\n", bb.GetID(), selfishnessScore[bb.GetID()])
 
 	//5) Linearly interpolate between selfish and helpful allocations based on selfishness score
 	distribution := make(map[uuid.UUID]float64)
@@ -177,7 +188,9 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 	}
 	for agentId, _ := range distribution {
 		distribution[agentId] = distribution[agentId] / runningDistribution // Normalise!
+		fmt.Printf("Agent %s Distribution %v\n", agentId, distribution[agentId])
 	}
+	fmt.Println("END OF AGENTS DISTRIBUTION\n")
 	return distribution
 }
 
@@ -472,6 +485,7 @@ func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.L
 // -----------------END OF DIRECTION DECISION FUNCTIONS------------------
 
 func (bb *Biker1) DecideAction() obj.BikerAction {
+	bb.UpdateOpinions()
 	// fellowBikers := bb.GetFellowBikers()
 	// avg_opinion := 1.0
 	// for _, agent := range fellowBikers {
@@ -657,7 +671,7 @@ func (bb *Biker1) GetObjectiveOpinion(id1 uuid.UUID, id2 uuid.UUID) float64 {
 func (bb *Biker1) UpdateOpinions() {
 	fellowBikers := bb.GetFellowBikers()
 	for _, agent := range fellowBikers {
-		id := agent.GetID()
+		// id := agent.GetID()
 		_, ok := bb.opinions[agent.GetID()]
 
 		if !ok {
@@ -671,10 +685,10 @@ func (bb *Biker1) UpdateOpinions() {
 			}
 			bb.opinions[agentId] = newOpinion
 		}
-		bb.UpdateTrust(id)
-		bb.UpdateEffort(id)
+		// bb.UpdateTrust(id)
+		// bb.UpdateEffort(id)
 		//bb.UpdateFairness(agent)
-		bb.UpdateOpinion(id, 1.0)
+		// bb.UpdateOpinion(id, 1.0)
 	}
 }
 
@@ -1182,7 +1196,7 @@ func (bb *Biker1) DecideKickOut() []uuid.UUID {
 	return tmp
 }
 
-//** decide the allocation (dictator)
+// ** decide the allocation (dictator)
 func (bb *Biker1) DecideDictatorAllocation() voting.IdVoteMap {
 	return bb.DecideAllocation()
 }
@@ -1252,6 +1266,7 @@ func GetBiker1(colour utils.Colour, id uuid.UUID) *Biker1 {
 	fmt.Printf("Creating Biker1 with id %v\n", id)
 	return &Biker1{
 		BaseBiker: obj.GetBaseBiker(colour, id),
+		opinions:  make(map[uuid.UUID]Opinion),
 	}
 }
 

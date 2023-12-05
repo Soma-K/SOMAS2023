@@ -128,7 +128,7 @@ func (s *Server) HandleKickoutProcess() []uuid.UUID {
 func (s *Server) GetLeavingDecisions(gameState objects.IGameState) []uuid.UUID {
 	leavingAgents := make([]uuid.UUID, 0)
 	for agentId, agent := range s.GetAgentMap() {
-		fmt.Printf("Agent %s updating state \n", agentId)
+		//fmt.Printf("Agent %s updating state \n", agentId)
 		agent.UpdateGameState(gameState)
 		agent.UpdateAgentInternalState()
 		switch agent.DecideAction() {
@@ -386,9 +386,8 @@ func (s *Server) LootboxCheckAndDistributions() {
 					}
 
 					bikeShare := float64(looted[lootid]) // how many other bikes have looted this box
-
+					fmt.Printf("total loot: %f \n", lootbox.GetTotalResources())
 					for agentID, allocation := range winningAllocation {
-						fmt.Printf("total loot: %f \n", lootbox.GetTotalResources())
 						lootShare := allocation * (lootbox.GetTotalResources() / bikeShare)
 						agent := s.GetAgentMap()[agentID]
 						// Allocate loot based on the calculated utility share
