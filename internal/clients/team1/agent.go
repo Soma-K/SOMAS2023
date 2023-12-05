@@ -48,7 +48,7 @@ type Opinion struct {
 type Biker1 struct {
 	*obj.BaseBiker                       // BaseBiker inherits functions from BaseAgent such as GetID(), GetAllMessages() and UpdateAgentInternalState()
 	recentVote     voting.LootboxVoteMap // the agent's most recent vote
-	recentDecided  uuid.UUID             // the most recent decision
+	recentDecided  uuid.UUID             // the most recent lootbox decision
 	dislikeVote    bool                  // whether the agent disliked the most recent vote
 	opinions       map[uuid.UUID]Opinion
 }
@@ -429,7 +429,7 @@ func (bb *Biker1) getPedalForce() float64 {
 // location of the nearest lootboX
 // the function is passed in the id of the voted lootbox, for now ignored
 func (bb *Biker1) DecideForce(direction uuid.UUID) {
-
+	bb.lootbox = direction
 	if bb.recentVote != nil {
 		if bb.recentVote[direction] < leavingThreshold {
 			bb.dislikeVote = true
@@ -493,22 +493,47 @@ func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
 
 	//}
 
-	optimalPedal := 0.5 //for now!!
-	optimalForce := optimalPedal * float64(len(fellowBikers))
-	remainingForce := optimalForce - totalPedalForce
+	//optimalPedal := bb.getPedalForce()
+	//optimalForce := optimalPedal * float64(len(fellowBikers))
+
 	//what to do if it is more than what is optimal?
-	for _, agent := range fellowBikers {
-		//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
-		//if bike colour = agent colour, p of not pedalling = 0
-	}
+
 	//avgForce := totalPedalForce / float64(len(fellowBikers))
 
 	bikeId := bb.GetBike()
 	gs := bb.GetGameState()
-	totalPedalForce := gs.GetMegaBikes()[bikeId].GetPhysicalState().Acceleration //MULTIPLY BY MASS @ROHAN
+	totalMass := utils.MassBike + float64(len(fellowBikers)+1)*utils.MassBiker
+	totalPedalForce := gs.GetMegaBikes()[bikeId].GetPhysicalState().Acceleration * totalMass
+	//forceDifference := optimalForce - totalPedalForce
+	//only look at forceDifference if it doesn't equal 0
+	remainingForce := totalPedalForce - bb.GetEnergyLevel()
+	effortProbability := make(map[uuid.UUID]float64) //probability that they are exc
+	lootBoxes := bb.GetGameState().GetLootBoxes()
+	totalEffort := 0.0
+	for _, agent := range fellowBikers {
+		colourProb := 0.0
+		if agent.GetColour() != lootBoxes[bb.recentDecided].GetColour() {
+			//probability should be high
+			//for now set to 0.5 but later change based on how close the lootbox is to their colour lootbox
+			colourProb += 0.5
+		}
+		energyProb := 1 - agent.GetEnergyLevel()
+		//Will add weightings to this so that energy probability has a lower weighting than difference in colour for example
+		//also plus reputation
+		effortProb := 1 - (colourProb+energyProb)/2 //scales between 0 and 1 and then negative so that higher probabilities mean you are less likely to contribute to pedal force
+
+		effortProbability[agent.GetID()] = effortProb
+		totalEffort += effortProb
+		//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+		//if bike colour = agent colour, p of not pedalling = 0
+	}
+	for agentId, _ := range effortProbability {
+		effortProbability[agentId] /= totalEffort
+		effortProbability[agentId] *= remainingForce
+	}
 	//
 	//effort expectation is scaled by their energy level -- should it be? (*agent.GetEnergyLevel())
-	finalEffort := bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal-avgForce)*effortScaling
+	finalEffort := bb.opinions[agent.GetID()].effort + effortProbability[agent.GetID()] - bb.getPedalForce() //bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal-avgForce)*effortScaling
 
 	if finalEffort > 1 {
 		finalEffort = 1
