@@ -617,18 +617,33 @@ func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
 
 func (bb *Biker1) UpdateTrust(agentID uuid.UUID) {
 	id := agentID
-	agent := bb.GetAgentFromId(agentID)
-	finalTrust := 0.5
-	if agent.GetForces().Turning.SteeringForce == bb.GetForces().Turning.SteeringForce {
-		finalTrust = bb.opinions[id].trust + deviatePositive
-		if finalTrust > 1 {
-			finalTrust = 1
-		}
+	finalTrust := bb.opinions[id].trust //nothing changes
+	lootBoxes := bb.GetGameState().GetLootBoxes()
+	targetPos := lootBoxes[bb.recentDecided].GetPosition()
+	currLocation := bb.GetLocation()
+	deltaX := targetPos.X - currLocation.X
+	deltaY := targetPos.Y - currLocation.Y
+	angle := math.Atan2(deltaY, deltaX)
+	normalisedAngle := angle / math.Pi
+	steeringForce := normalisedAngle - bb.GetBikeInstance().GetOrientation()
+	if steeringForce == 0.0 { //we are headed in direction towards lootbox
+		finalTrust = bb.opinions[id].trust + deviatePositive //will change to be based on weighting
 	} else {
-		finalTrust := bb.opinions[id].trust + deviateNegative
-		if finalTrust < 0 {
-			finalTrust = 0
+		//	need to estimate likelihood of each agent deviating from the correct steeringforce
+		fellowBikers := bb.GetFellowBikers()
+		for _, agent := range fellowBikers {
+			if agent.GetColour() != lootBoxes[bb.recentDecided].GetColour() {
+				//currently if its not the agent's colour then trust in them decreases
+				//needs to include reputation somehow
+				//needs to calculate orientation to their colour (is it closer to or further than (orientation wise) voted lootbox)
+				finalTrust = bb.opinions[id].trust - deviateNegative
+			}
 		}
+	}
+	if finalTrust > 1 {
+		finalTrust = 1
+	} else if finalTrust < 0 {
+		finalTrust = 0
 	}
 	newOpinion := Opinion{
 		effort:   bb.opinions[id].effort,
