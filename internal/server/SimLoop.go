@@ -22,6 +22,7 @@ func (s *Server) RunSimLoop(gameStates []GameStateDump, iterations int) []GameSt
 	for i := 0; i < iterations; i++ {
 		s.RunRoundLoop()
 		gameStates = append(gameStates, s.NewGameStateDump())
+		fmt.Printf("Round %d completed.\n", i)
 	}
 
 	return gameStates
