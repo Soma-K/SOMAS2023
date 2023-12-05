@@ -552,19 +552,6 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
 	agent := bb.GetAgentFromId(agentID)
 	fellowBikers := bb.GetFellowBikers()
-	//totalPedalForce := 0.0//GET THIS SOMEHOW FROM BIKE ACCELERATION?
-	//for _, agent := range fellowBikers {
-	//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
-
-	//}
-
-	//optimalPedal := bb.getPedalForce()
-	//optimalForce := optimalPedal * float64(len(fellowBikers))
-
-	//what to do if it is more than what is optimal?
-
-	//avgForce := totalPedalForce / float64(len(fellowBikers))
-
 	bikeId := bb.GetBike()
 	gs := bb.GetGameState()
 	totalMass := utils.MassBike + float64(len(fellowBikers)+1)*utils.MassBiker
