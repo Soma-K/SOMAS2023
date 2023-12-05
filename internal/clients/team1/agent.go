@@ -1375,7 +1375,7 @@ func (bb *Biker1) VoteLeader() voting.IdVoteMap {
 		votes[agent.GetID()] = 0.0
 		avgOp := bb.GetAverageOpinionOfAgent(agent.GetID())
 		if agent.GetID() != bb.GetID() {
-			val, ok := bb.relationships[agent.GetID()]
+			val, ok := bb.opinions[agent.GetID()]
 			if ok {
 				avgOp = (avgOp + val.opinion) / 2
 			}
@@ -1398,7 +1398,7 @@ func (bb *Biker1) VoteDictator() voting.IdVoteMap {
 		votes[agent.GetID()] = 0.0
 		avgOp := bb.GetAverageOpinionOfAgent(agent.GetID())
 		if agent.GetID() != bb.GetID() {
-			val, ok := bb.relationships[agent.GetID()]
+			val, ok := bb.opinions[agent.GetID()]
 			if ok {
 				avgOp = (avgOp + 3*val.opinion) / 4
 			}
