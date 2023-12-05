@@ -19,7 +19,7 @@ const deviatePositive = 0.1      // trust gain on non deviation
 const effortScaling = 0.1        // scaling factor for effort, highr it is the more effort chages each round
 const fairnessScaling = 0.1      // scaling factor for fairness, higher it is the more fairness changes each round
 const leaveThreshold = 0.0       // threshold for leaving
-const kickThreshold = 0.0       // threshold for kicking
+const kickThreshold = 0.0        // threshold for kicking
 const trustThreshold = 0.7       // threshold for trusting (need to tune)
 const fairnessConstant = 1       // weight of fairness in opinion
 const joinThreshold = 0.8        // opinion threshold for joining if not same colour
@@ -552,13 +552,53 @@ func (bb *Biker1) DecideForce(direction uuid.UUID) {
 func (bb *Biker1) UpdateEffort(agentID uuid.UUID) {
 	agent := bb.GetAgentFromId(agentID)
 	fellowBikers := bb.GetFellowBikers()
-	totalPedalForce := 0.0
+	//totalPedalForce := 0.0//GET THIS SOMEHOW FROM BIKE ACCELERATION?
+	//for _, agent := range fellowBikers {
+	//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+
+	//}
+
+	//optimalPedal := bb.getPedalForce()
+	//optimalForce := optimalPedal * float64(len(fellowBikers))
+
+	//what to do if it is more than what is optimal?
+
+	//avgForce := totalPedalForce / float64(len(fellowBikers))
+
+	bikeId := bb.GetBike()
+	gs := bb.GetGameState()
+	totalMass := utils.MassBike + float64(len(fellowBikers)+1)*utils.MassBiker
+	totalPedalForce := gs.GetMegaBikes()[bikeId].GetPhysicalState().Acceleration * totalMass
+	//forceDifference := optimalForce - totalPedalForce
+	//only look at forceDifference if it doesn't equal 0
+	remainingForce := totalPedalForce - bb.GetEnergyLevel()
+	effortProbability := make(map[uuid.UUID]float64) //probability that they are exc
+	lootBoxes := bb.GetGameState().GetLootBoxes()
+	totalEffort := 0.0
 	for _, agent := range fellowBikers {
-		totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+		colourProb := 0.0
+		if agent.GetColour() != lootBoxes[bb.recentDecided].GetColour() {
+			//probability should be high
+			//for now set to 0.5 but later change based on how close the lootbox is to their colour lootbox
+			colourProb += 0.5
+		}
+		energyProb := 1 - agent.GetEnergyLevel()
+		//Will add weightings to this so that energy probability has a lower weighting than difference in colour for example
+		//also plus reputation
+		effortProb := 1 - (colourProb+energyProb)/2 //scales between 0 and 1 and then negative so that higher probabilities mean you are less likely to contribute to pedal force
+
+		effortProbability[agent.GetID()] = effortProb
+		totalEffort += effortProb
+		//totalPedalForce = totalPedalForce + agent.GetForces().Pedal
+		//if bike colour = agent colour, p of not pedalling = 0
 	}
-	avgForce := totalPedalForce / float64(len(fellowBikers))
+	for agentId := range effortProbability {
+		effortProbability[agentId] /= totalEffort
+		effortProbability[agentId] *= remainingForce
+	}
+	//
 	//effort expectation is scaled by their energy level -- should it be? (*agent.GetEnergyLevel())
-	finalEffort := bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal-avgForce)*effortScaling
+	finalEffort := bb.opinions[agent.GetID()].effort + effortProbability[agent.GetID()] - bb.getPedalForce() //bb.opinions[agent.GetID()].effort + (agent.GetForces().Pedal-avgForce)*effortScaling
 
 	if finalEffort > 1 {
 		finalEffort = 1
