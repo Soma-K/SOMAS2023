@@ -249,7 +249,7 @@ func (bb *BaseBiker) GetBike() uuid.UUID {
 
 // this is called when a lootbox of the desidered colour has been looted in order to update the sought colour
 func (bb *BaseBiker) UpdateColour(totColours utils.Colour) {
-	bb.soughtColour = utils.Colour(rand.Intn(int(totColours)))
+	bb.soughtColour = totColours //utils.Colour(rand.Intn(int(totColours)))
 }
 
 // update the points at the end of a round
