@@ -443,11 +443,11 @@ func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.L
 	}
 	fmt.Printf("Max Votes: %v\n", maxVotes)
 	// if our proposal has majority noms, vote for it
-	// if proposalNoOfNoms[proposals[bb.GetID()]] > maxVotes {
-	// 	votes[proposals[bb.GetID()]] = 1
-	// 	fmt.Printf("%v votes for its own nomination %v\n", bb.GetColour(), votes)
-	// 	return votes
-	// }
+	if proposalNoOfNoms[proposals[bb.GetID()]] > maxVotes {
+		votes[proposals[bb.GetID()]] = 1
+		fmt.Printf("%v votes for its own nomination %v\n", bb.GetColour(), votes)
+		return votes
+	}
 
 	// for every nominated box (D)
 	for proposer, proposal := range proposals {
@@ -509,6 +509,7 @@ func (bb *Biker1) FinalDirectionVote(proposals map[uuid.UUID]uuid.UUID) voting.L
 		votes[proposal] = 0.0
 	}
 	votes[finalProposal] = 1.
+	fmt.Printf("%v normalised votes post-selection: %v\n", bb.GetColour(), votes)
 
 	return votes
 }
