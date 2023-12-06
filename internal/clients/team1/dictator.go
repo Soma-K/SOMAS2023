@@ -20,7 +20,10 @@ func (bb *Biker1) DictateDirection() uuid.UUID {
 // ** decide which agents to kick out (dictator)
 func (bb *Biker1) DecideKickOut() []uuid.UUID {
 	tmp := []uuid.UUID{}
-	tmp = append(tmp, bb.lowestOpinionKick())
+	agent := bb.lowestOpinionKick()
+	if agent != uuid.Nil {
+		tmp = append(tmp, agent)
+	}
 	return tmp
 }
 

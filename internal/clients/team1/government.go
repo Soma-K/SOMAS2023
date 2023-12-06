@@ -11,15 +11,15 @@ import (
 
 // Not implemented on Server yet so this is just a placeholder
 func (bb *Biker1) DecideGovernance() utils.Governance {
-	if bb.DecideDictatorship() {
-		return 2
-	} else if bb.DecideLeadership() {
-		return 1
-	} else {
-		// Democracy
-		return 0
-	}
-	//return 2
+	// if bb.DecideDictatorship() {
+	// 	return 2
+	// } else if bb.DecideLeadership() {
+	// 	return 1
+	// } else {
+	// 	// Democracy
+	// 	return 0
+	// }
+	return 2
 }
 
 // Might be unnecesary as this is the default goverment choice for us

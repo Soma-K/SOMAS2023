@@ -154,6 +154,9 @@ func (mb *MegaBike) GetGovernance() utils.Governance {
 }
 
 func (mb *MegaBike) GetRuler() uuid.UUID {
+	for _, agent := range mb.agents {
+		return agent.GetID()
+	}
 	return mb.ruler
 }
 

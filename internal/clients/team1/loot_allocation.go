@@ -47,7 +47,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 	selfishnessScore := make(map[uuid.UUID]float64)
 	bikeID := bb.GetBike()
 	gs := bb.GetGameState()
-	//fmt.Printf("FUCK: %v", gs.GetMegaBikes()[bikeID].GetGovernance())
+
 	if gs.GetMegaBikes()[bikeID].GetGovernance() != 2 {
 		runningScore := 0.0
 

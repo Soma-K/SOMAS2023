@@ -41,8 +41,6 @@ const leadershipReputationThreshold = 0.5
 const dictatorshipOpinionThreshold = 0.9
 const dictatorshipReputationThreshold = 0.7
 
-
-
 type Biker1 struct {
 	*obj.BaseBiker                       // BaseBiker inherits functions from BaseAgent such as GetID(), GetAllMessages() and UpdateAgentInternalState()
 	recentVote     voting.LootboxVoteMap // the agent's most recent vote
@@ -50,7 +48,6 @@ type Biker1 struct {
 	dislikeVote    bool                  // whether the agent disliked the most recent vote
 	opinions       map[uuid.UUID]Opinion
 }
-
 
 // part 1:
 // the biker itself doesn't technically have a location (as it's on the map only when it's on a bike)
@@ -65,11 +62,6 @@ func (bb *Biker1) GetLocation() utils.Coordinates {
 	}
 	return position
 }
-
-
-
-
-
 
 func (bb *Biker1) DecideAction() obj.BikerAction {
 	bb.UpdateOpinions()
@@ -90,12 +82,6 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 		return 0
 	}
 }
-
-
-
-
-
-
 
 // ----------------CHANGE BIKE FUNCTIONS-----------------
 // define a sorter for bikes -> used to change bikes
@@ -161,7 +147,7 @@ func (bb *Biker1) ChangeBike() uuid.UUID {
 	allBikes := gs.GetMegaBikes()
 	var bikeDistances []bikeDistance
 	for id, bike := range allBikes {
-		if len(bike.GetAgents()) < 8 && id != bb.GetBike(){
+		if len(bike.GetAgents()) < 8 && id != bb.GetBike() {
 			dist := physics.ComputeDistance(bb.GetLocation(), bike.GetPosition())
 			bikeDistances = append(bikeDistances, bikeDistance{
 				bikeID:   id,
@@ -182,8 +168,6 @@ func (bb *Biker1) ChangeBike() uuid.UUID {
 	}
 	return bikeDistances[0].bikeID
 }
-
-
 
 // -------------------BIKER ACCEPTANCE FUNCTIONS------------------------
 // an agent will have to rank the agents that are trying to join and that they will try to
@@ -257,10 +241,6 @@ func (bb *Biker1) VoteForKickout() map[uuid.UUID]int {
 }
 
 //--------------------END OF BIKER ACCEPTANCE FUNCTIONS-------------------
-
-
-
-
 
 // -------------------INSTANTIATION FUNCTIONS----------------------------
 func GetBiker1(colour utils.Colour, id uuid.UUID) *Biker1 {
