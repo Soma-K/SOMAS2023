@@ -220,23 +220,6 @@ func (bb *Biker1) distanceToEnergy(distance float64, initialEnergy float64) floa
 	return remainingEnergy
 }
 
-// Finds all boxes within our reachable distance
-func (bb *Biker1) getAllReachableBoxes() []uuid.UUID {
-	currLocation := bb.GetLocation()
-	ourEnergy := bb.GetEnergyLevel()
-	lootBoxes := bb.GetGameState().GetLootBoxes()
-	reachableBoxes := make([]uuid.UUID, 0)
-	var currDist float64
-	for _, loot := range lootBoxes {
-		lootPos := loot.GetPosition()
-		currDist = physics.ComputeDistance(currLocation, lootPos)
-		if currDist < bb.energyToReachableDistance(ourEnergy) {
-			reachableBoxes = append(reachableBoxes, loot.GetID())
-		}
-	}
-	return reachableBoxes
-}
-
 // returns the nearest lootbox with respect to the agent's bike current position
 // in the MVP this is used to determine the pedalling forces as all agent will be
 // aiming to get to the closest lootbox by default
@@ -257,11 +240,10 @@ func (bb *Biker1) getAllReachableBoxes() []uuid.UUID {
 // }
 
 // Finds the nearest reachable box
-func (bb *Biker1) getNearestBox() uuid.UUID {
-	currLocation := bb.GetLocation()
+func (bb *Biker1) getNearestBox(currLocation utils.Coordinates) uuid.UUID {
 	shortestDist := math.MaxFloat64
 	//default to nearest lootbox
-	nearestBox := uuid.Nil
+	nearestBox := uuid.Nilxx
 	var currDist float64
 	initialized := false
 	for id, loot := range bb.GetGameState().GetLootBoxes() {
@@ -281,11 +263,10 @@ func (bb *Biker1) getNearestBox() uuid.UUID {
 }
 
 // Finds the nearest lootbox of agent's colour
-func (bb *Biker1) nearestLootColour() (uuid.UUID, float64) {
+func (bb *Biker1) nearestLootColour(currLocation utils.Coordinates, agentColour utils.Colour) (uuid.UUID, float64) {
 	shortestDist := math.MaxFloat64
 	nearestBox := uuid.Nil
 	initialized := false
-	currLocation := bb.GetLocation()
 	//default to nearest lootbox
 	var currDist float64
 	for id, loot := range bb.GetGameState().GetLootBoxes() {
@@ -295,7 +276,7 @@ func (bb *Biker1) nearestLootColour() (uuid.UUID, float64) {
 		}
 		lootPos := loot.GetPosition()
 		currDist = physics.ComputeDistance(currLocation, lootPos)
-		if (currDist < shortestDist) && (loot.GetColour() == bb.GetColour()) {
+		if (currDist < shortestDist) && (loot.GetColour() == agentColour) {
 			nearestBox = id
 			shortestDist = currDist
 		}
@@ -325,7 +306,7 @@ func (bb *Biker1) FindReachableBoxNearestToColour(nearestColourBox uuid.UUID) uu
 
 func (bb *Biker1) ProposeDirection() uuid.UUID {
 	// get box of our colour
-	nearestColourBox, distanceToNearestBox := bb.nearestLootColour()
+	nearestColourBox, distanceToNearestBox := bb.nearestLootColour(bb.GetLocation(), bb.GetColour())
 
 	// if box of our colour exists
 	if nearestColourBox != uuid.Nil {
@@ -344,8 +325,8 @@ func (bb *Biker1) ProposeDirection() uuid.UUID {
 	}
 
 	// assumed that box always exists
-	nearestBox := bb.getNearestBox()
-	fmt.Printf("agent %v nominated nearest %v box %v \n", bb.GetColour(), bb.GetGameState().GetLootBoxes()[nearestBox].GetColour(), nearestBox)
+	nearestBox := bb.getNearestBox(bb.GetLocation())
+	fmt.Printf("agent %v nominatxed nearest %v box %v \n", bb.GetColour(), bb.GetGameState().GetLootBoxes()[nearestBox].GetColour(), nearestBox)
 	return nearestBox
 }
 
@@ -1313,11 +1294,88 @@ func (bb *Biker1) GetAgentFromId(agentId uuid.UUID) obj.IBaseBiker {
 //--------------------DICTATOR FUNCTIONS------------------
 
 // ** called only when the agent is the dictator
-// func (bb *Biker1) DictateDirection() uuid.UUID {
-// 	// TODO: make more sophisticated
-// 	tmp, _ := bb.nearestLootColour()
-// 	return tmp
-// }
+func (bb *Biker1) sumBoxCubeScores(colour utils.Colour) float64 {
+	cube := 0.
+	// for all fellow bikers whose color match
+	bikers := bb.GetFellowBikers()
+	for _, biker := range bikers {
+		if biker.GetColour() == colour {
+			// sum cube score
+			cube += bb.calculateCubeScoreForAgent(biker)
+		}
+	}
+	return cube
+}
+
+// Finds all boxes within our reachable distance
+func (bb *Biker1) calculateDictatorBoxScore(currLocation utils.Coordinates, energy float64, n int, E float64) float64 {
+	lootBoxes := bb.GetGameState().GetLootBoxes()
+	var currDist float64
+	var score float64
+	D := 0.
+	C := 0.
+	var distanceFactor float64
+	var remainingEnergy float64
+
+	for _, loot := range lootBoxes {
+		lootPos := loot.GetPosition()
+		currDist = physics.ComputeDistance(currLocation, lootPos)
+		if currDist > bb.energyToReachableDistance(energy) {
+			continue
+		}
+		// increase density by 1
+		D += 1
+		if currDist == 0 {
+			// this is the main box: distance factor is one
+			distanceFactor = 1
+		} else {
+			// calculate energy to travel currDist
+			remainingEnergy = bb.distanceToEnergy(currDist, energy)
+			// distanceFactor = energy travelled / energy before
+			distanceFactor = remainingEnergy / energy
+		}
+		C += bb.sumBoxCubeScores(loot.GetColour()) * distanceFactor
+	}
+
+	score = C * (energy / E) * (D / float64(n))
+	return score
+}
+
+func (bb *Biker1) DictateDirection() uuid.UUID {
+	// nomination
+	// for each agent on our bike	// get the closest box of their colour
+
+	// check distance to box
+	// Get remaining energy if we went to that box
+	// Get all boxes reachable from nominated box and the remaining energy
+	// Find density of boxes around that box
+	// Evaluate box based on cube, density and distance
+	// nominaton score = (densitty/n) * (remaining energy/total energy) * (Cube1 + sum((Er/Etot)*Cubei))
+
+	lootBoxes := bb.GetGameState().GetLootBoxes()
+	currLocation := bb.GetLocation()
+	fellowBikers := bb.GetFellowBikers()
+	initialEnergy := bb.GetEnergyLevel()
+
+	maxScore := 0.
+	vote := uuid.Nil
+
+	for _, agent := range fellowBikers {
+		// for each agent on our bike, get the closest box of their colour
+		nearestColourBox, distanceToNearestBox := bb.nearestLootColour(agent.GetLocation(), agent.GetColour())
+		// get remaining energy if we went to that box
+		remainingEnergy := bb.distanceToEnergy(distanceToNearestBox, initialEnergy)
+		// get score for this box
+		boxScore := bb.calculateDictatorBoxScore(currLocation, remainingEnergy, len(lootBoxes), initialEnergy)
+
+		if boxScore >= maxScore {
+			maxScore = boxScore
+			vote = nearestColourBox
+		}
+	}
+
+	return vote
+}
 
 // ** decide which agents to kick out (dictator)
 // func (bb *Biker1) DecideKickOut() []uuid.UUID {
