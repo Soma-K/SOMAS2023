@@ -4,6 +4,7 @@ package team1
 
 import (
 	voting "SOMAS2023/internal/common/voting"
+
 	"github.com/google/uuid"
 )
 
@@ -18,8 +19,6 @@ func (bb *Biker1) DictateDirection() uuid.UUID {
 
 // ** decide which agents to kick out (dictator)
 func (bb *Biker1) DecideKickOut() []uuid.UUID {
-
-	// TODO: make more sophisticated
 	tmp := []uuid.UUID{}
 	tmp = append(tmp, bb.lowestOpinionKick())
 	return tmp
