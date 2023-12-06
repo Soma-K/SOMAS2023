@@ -4,6 +4,7 @@ import (
 	voting "SOMAS2023/internal/common/voting"
 	"fmt"
 	"math"
+
 	"github.com/google/uuid"
 )
 
@@ -44,18 +45,29 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 	//3/4) Look in success vector to see relative success of each agent and calculate selfishness score using suc-rel chart (0-1)
 	//TI - Around line 350, we have Soma`s pseudocode on agent opinion held in bb.Opinion.opinion, lets assume its normalized between 0-1
 	selfishnessScore := make(map[uuid.UUID]float64)
-	runningScore := 0.0
+	gs := bb.GetGameState()
+	bikeID := bb.GetBike()
+	if gs.GetMegaBikes()[bikeID].GetGovernance() != 2 {
+		runningScore := 0.0
 
-	for _, agent := range fellowBikers {
-		if agent.GetID() != bb.GetID() {
-			score := bb.GetSelfishness(agent)
-			id := agent.GetID()
-			selfishnessScore[id] = score
-			runningScore = runningScore + selfishnessScore[id]
+		for _, agent := range fellowBikers {
+			if agent.GetID() != bb.GetID() {
+				score := bb.GetSelfishness(agent)
+				id := agent.GetID()
+				selfishnessScore[id] = score
+				runningScore = runningScore + selfishnessScore[id]
+				fmt.Printf("Agent %s democrat, %f\n", id, selfishnessScore[id])
+			}
+		}
+
+		selfishnessScore[bb.GetID()] = runningScore / float64((len(fellowBikers) - 1))
+		fmt.Printf("Agent %s democrat, %f\n", bb.GetID(), selfishnessScore[bb.GetID()])
+	} else {
+		for _, agent := range fellowBikers {
+			selfishnessScore[agent.GetID()] = 1.0
+			fmt.Printf("Agent %s dictator, %f\n", agent.GetID(), selfishnessScore[agent.GetID()])
 		}
 	}
-
-	selfishnessScore[bb.GetID()] = runningScore / float64((len(fellowBikers) - 1))
 
 	//5) Linearly interpolate between selfish and helpful allocations based on selfishness score
 	distribution := make(map[uuid.UUID]float64)
