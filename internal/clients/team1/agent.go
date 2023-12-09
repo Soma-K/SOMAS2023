@@ -66,7 +66,7 @@ type Biker1 struct {
 	numberOfLeaves        int
 	leavingRisk           float64
 	prevEnergy            map[uuid.UUID]float64 // energy level of each agent in the previous round
-
+	GroupID               int
 }
 
 // part 1:
@@ -182,7 +182,9 @@ func (bb *Biker1) DecideAction() obj.BikerAction {
 			// fmt.Printf("Agent %v is considering leaving bike %v\n", bb.GetID(), bb.GetBike())
 			newBike := bb.PickBestBike()
 			if newBike != bb.GetBike() {
+				bb.desiredBike = newBike
 				// refresh prevEnergy Map
+				bb.desiredBike = newBike
 				bb.prevEnergy = make(map[uuid.UUID]float64)
 				// fmt.Printf("Agent %v is leaving bike %v for bike %v\n", bb.GetID(), bb.GetBike(), newBike)
 				return 1
@@ -225,9 +227,7 @@ func (bb *Biker1) BikeOurColour(bike obj.IMegaBike) bool {
 // decide which bike to go to
 func (bb *Biker1) ChangeBike() uuid.UUID {
 	// if recently left bike
-	if bb.desiredBike == uuid.Nil {
-		bb.desiredBike = bb.PickBestBike()
-	}
+	bb.desiredBike = bb.PickBestBike()
 	if bb.prevOnBike && !bb.GetBikeStatus() {
 		bb.prevOnBike = false
 		bb.numberOfLeaves++
@@ -339,6 +339,7 @@ func (bb *Biker1) VoteForKickout() map[uuid.UUID]int {
 // -------------------INSTANTIATION FUNCTIONS----------------------------
 func GetBiker1(baseBiker *obj.BaseBiker) obj.IBaseBiker {
 	fmt.Printf("Creating Biker1 with id %v\n", baseBiker.GetID())
+	baseBiker.GroupID = 1
 	return &Biker1{
 		BaseBiker:      baseBiker,
 		opinions:       make(map[uuid.UUID]Opinion),

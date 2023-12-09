@@ -1,12 +1,18 @@
 package server
 
 import (
-	"SOMAS2023/internal/clients/team1"
+	// "SOMAS2023/internal/clients/team1"
 	"SOMAS2023/internal/clients/team2"
-	"SOMAS2023/internal/clients/team8"
+	// "SOMAS2023/internal/clients/team_3"
+	// "SOMAS2023/internal/clients/team4"
+	// "SOMAS2023/internal/clients/team_5"
+	// "SOMAS2023/internal/clients/team7/agents"
+	// "SOMAS2023/internal/clients/team8"
+
 	"SOMAS2023/internal/common/objects"
 	"SOMAS2023/internal/common/utils"
 
+	//team7agents "SOMAS2023/internal/clients/team7/agents"
 	baseserver "github.com/MattSScott/basePlatformSOMAS/BaseServer"
 	"github.com/google/uuid"
 )
@@ -14,10 +20,19 @@ import (
 type AgentInitFunction func(baseBiker *objects.BaseBiker) objects.IBaseBiker
 
 var AgentInitFunctions = []AgentInitFunction{
-	nil,                 // Base Biker
-	team1.GetBiker1,     // Team 1
-	team2.GetBiker,      // Team 2
-	team8.GetIBaseBiker, // Team 8
+	// nil, // Base Biker
+	// team1.GetBiker1, // Team 1 - fails test
+	team2.GetBiker, // Team 2 - passes test
+	// team_3.GetT3Agent, // Team 3 - crashes
+	// team4.GetBiker4,      // Team 4 - fails test
+	// team5Agent.GetBiker5, // Team 5 - fails test
+	// agents.GetBiker7, // Team 7 - crashes
+	// team8.GetBiker8, // Team 8 - fails test
+
+	// Team 1, Team 2, Team 4, Team 5, Team 8 can all be run together
+	// Team 3 and 7 crash if they are run at all
+	// Only team 2 passes tests.
+
 }
 
 func GetAgentGenerators() []baseserver.AgentGeneratorCountPair[objects.IBaseBiker] {

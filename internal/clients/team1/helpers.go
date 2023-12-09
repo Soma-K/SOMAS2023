@@ -18,10 +18,13 @@ func (bb *Biker1) ComputeDistance(a utils.Coordinates, b utils.Coordinates) floa
 func (bb *Biker1) GetFellowBikers() []obj.IBaseBiker {
 	gs := bb.GetGameState()
 	bikeId := bb.GetBike()
-	if bikeId == uuid.Nil {
+	result, ok := gs.GetMegaBikes()[bikeId]
+
+	if ok {
+		return result.GetAgents()
+	}else{
 		return []obj.IBaseBiker{}
 	}
-	return gs.GetMegaBikes()[bikeId].GetAgents()
 }
 
 func (bb *Biker1) GetBikeInstance() obj.IMegaBike {
@@ -168,7 +171,7 @@ func (bb *Biker1) GetNearBikeObjects(bike obj.IMegaBike) (int64, int64, int64) {
 	bikeCount := 0
 	for _, lootbox := range bb.GetGameState().GetLootBoxes() {
 		distance := bb.ComputeDistance(lootbox.GetPosition(), bike.GetPosition())
-		//fmt.Printf("distance from bike %v to lootox %v is %v\n", bike.GetID(), lootbox.GetID(), distance)
+		////** fmt.Printf("distance from bike %v to lootox %v is %v\n", bike.GetID(), lootbox.GetID(), distance)
 		if distance <= reachableDistance {
 			lootBoxCount += 1
 			if lootbox.GetColour() == bb.GetColour() {
