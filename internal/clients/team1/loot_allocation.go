@@ -2,9 +2,9 @@ package team1
 
 import (
 	voting "SOMAS2023/internal/common/voting"
-	"fmt"
-	"github.com/google/uuid"
 	"math"
+
+	"github.com/google/uuid"
 )
 
 // ---------------LOOT ALLOCATION FUNCTIONS------------------
@@ -70,7 +70,7 @@ func (bb *Biker1) DecideAllocation() voting.IdVoteMap {
 		distribution[agentId] = distribution[agentId] / runningDistribution // Normalise!
 	}
 	if math.IsNaN(distribution[bb.GetID()]) {
-		fmt.Println("Distribution is NaN")
+		//** fmt.Println("Distribution is NaN")
 	}
 	return distribution
 }

@@ -72,7 +72,7 @@ class GameScreen:
         #control information
         self.elements["controls"] = ui_text_box.UITextBox(
             relative_rect=pygame.Rect((x, 10+DIM["BUTTON_HEIGHT"]), (DIM["BUTTON_WIDTH"], 220)),
-            html_text="<font face=verdana size=3 color=#FFFFFF><b>Controls</b></font><br><font face=verdana size=3 color=#FFFFFF><b>Space</b> - Play/Pause<br><b>Right</b> - Next Round<br><b>Left</b> - Previous Round<br><b>Up</b> - Increase Speed<br><b>Down</b> - Decrease Speed<br><b>Scroll</b> - Zoom<br><b>Click</b> - Select Entity</font>", # pylint: disable=line-too-long
+            html_text="<font face=verdana size=3 color=#FFFFFF><b>Controls</b></font><br><font face=verdana size=3 color=#FFFFFF><b>Space</b> - Play/Pause<br><b>Right</b> - Next Iteration<br><b>Left</b> - Previous Iteration<br><b>Up</b> - Increase Speed<br><b>Down</b> - Decrease Speed<br><b>Scroll</b> - Zoom<br><b>Click</b> - Select Entity</font>", # pylint: disable=line-too-long
             manager=manager,
             container=uiscreen,
             anchors={
@@ -87,7 +87,7 @@ class GameScreen:
         # Round count
         self.elements["round_count"] = UILabel(
             relative_rect=pygame.Rect((x, topmargin+DIM["BUTTON_HEIGHT"]), (DIM["BUTTON_WIDTH"], DIM["BUTTON_HEIGHT"])),
-            text="Round: 0",
+            text="Iteration: 0",
             manager=manager,
             container=uiscreen,
             anchors={
@@ -116,7 +116,7 @@ class GameScreen:
         x, _ = make_center((DIM["BUTTON_WIDTH"]*factor, DIM["BUTTON_HEIGHT"]), (DIM["UI_WIDTH"], DIM["SCREEN_HEIGHT"]))
         self.elements["increase_round"] = UIButton(
             relative_rect=pygame.Rect((x, topmargin), (DIM["BUTTON_WIDTH"]*factor, DIM["BUTTON_HEIGHT"])),
-            text="Increase Round",
+            text="Increase Iteration",
             manager=manager,
             container=uiscreen,
             anchors={
@@ -129,7 +129,7 @@ class GameScreen:
         # Iteration count
         self.elements["iteration_count"] = UILabel(
             relative_rect=pygame.Rect((x, topmargin+DIM["BUTTON_HEIGHT"]*2.5), (DIM["BUTTON_WIDTH"]*factor, DIM["BUTTON_HEIGHT"]/2)),
-            text="Iteration: 0",
+            text="Round: 0",
             manager=manager,
             container=uiscreen,
             anchors={
@@ -141,7 +141,7 @@ class GameScreen:
         )
         self.elements["decrease_round"] = UIButton(
             relative_rect=pygame.Rect((x, topmargin+3*DIM["BUTTON_HEIGHT"]), (DIM["BUTTON_WIDTH"]*factor, DIM["BUTTON_HEIGHT"])),
-            text="Decrease Round",
+            text="Decrease Iteration",
             manager=manager,
             container=uiscreen,
             anchors={
@@ -168,7 +168,7 @@ class GameScreen:
         # play pause speed
         self.elements["play_pause_speed"] = UILabel(
             relative_rect=pygame.Rect((x, topmargin+DIM["BUTTON_HEIGHT"]*4.5), (DIM["BUTTON_WIDTH"]*factor, DIM["BUTTON_HEIGHT"]//2)),
-            text="1 Round/Sec",
+            text="1 Iteration/Sec",
             manager=manager,
             container=uiscreen,
             anchors={
@@ -235,6 +235,7 @@ class GameScreen:
             "Active Lootboxes" : 0,
             "Alive Agents" : 0,
             "Dead Agents" : 0,
+            "Void Agents" : 0
         }
         self.agents = {}
         return self.elements
@@ -255,10 +256,10 @@ class GameScreen:
             bike.draw(screen, self.offsetX, self.offsetY, self.zoom)
         # Draw overlays
         for bike in self.bikes.values():
-            bike.draw_overlay(screen)
+            bike.draw_overlay(screen, self.offsetX, self.offsetY, self.zoom)
         for lootbox in self.lootboxes.values():
-            lootbox.draw_overlay(screen)
-        self.awdi.draw_overlay(screen)
+            lootbox.draw_overlay(screen, self.offsetX, self.offsetY, self.zoom)
+        self.awdi.draw_overlay(screen, self.offsetX, self.offsetY, self.zoom)
         self.draw_mouse_coords(screen)
         # Divider line
         lineWidth = 1
@@ -350,7 +351,7 @@ class GameScreen:
         """
         self.playSpeed = min(MAXSPEED, max(1, newSpeed))
         self.elements["play_pause_speed_slider"].set_current_value(self.playSpeed)
-        self.elements["play_pause_speed"].set_text(f"{self.playSpeed} Round/Sec")
+        self.elements["play_pause_speed"].set_text(f"{self.playSpeed} Iteration/Sec")
         if self.isPlaying:
             pygame.time.set_timer(self.playEvent, int(1000//self.playSpeed))
 
@@ -360,17 +361,29 @@ class GameScreen:
         Determine statistics
         """
         self.round = max(0, min(self.maxRound, newRound))
-        self.elements["round_count"].set_text(f"Round: {self.round}")
-        self.elements["iteration_count"].set_text(f"Iteration: {self.round // ITERATIONLENGTH}")
+        self.elements["round_count"].set_text(f"Iteration: {self.round}")
+        self.elements["iteration_count"].set_text(f"Round: {self.round // ITERATIONLENGTH}")
         self.elements["console"].html_text = ""
-        self.elements["console"].rebuild()
+        self.stats["Void Agents"] = 0
         #Reload bikes
         bikes = {}
         agents = {}
         for bikeid, bike in self.jsonData[self.round]["bikes"].items():
             if bikeid not in self.bikeColourMap:
                 self.bikeColourMap[bikeid] = self.allocate_colour()
-            bikes[bikeid] = Bike(bikeid, bike, self.bikeColourMap[bikeid], self.jsonData[self.round]["agents"])
+            #Determine next position for arrow drawing
+            nextRound = self.jsonData[min(self.round+1, self.maxRound)]["bikes"]
+            if bikeid in nextRound:
+                nextPos = nextRound[bikeid]["physical_state"]["position"]["x"], nextRound[bikeid]["physical_state"]["position"]["y"]
+                if "orientation" in nextRound[bikeid]:
+                    nextOrient = nextRound[bikeid]["orientation"]
+                else:
+                    nextOrient = -2
+            else:
+            #If bike is dead, draw arrow to empty
+                nextPos = 0, 0
+                nextOrient = 0
+            bikes[bikeid] = Bike(bikeid, bike, self.bikeColourMap[bikeid], self.jsonData[self.round]["agents"], nextPos, nextOrient, self.jsonData[min(self.round+1, self.maxRound)]["agents"])
             agents.update(bikes[bikeid].get_agents())
         self.compare_agents(agents)
         self.compare_bikes(bikes)
@@ -379,8 +392,10 @@ class GameScreen:
         for lootboxid, lootbox in self.jsonData[self.round]["loot_boxes"].items():
             lootboxes[lootboxid] = Lootbox(lootboxid, lootbox)
         self.compare_lootboxes(lootboxes)
-        self.awdi = Awdi(self.jsonData[self.round]["audi"])
+        self.awdi = Awdi(self.jsonData[self.round]["audi"], self.jsonData[self.round]["bikes"])
         self.update_stats()
+        self.elements["stats"].rebuild()
+        self.elements["console"].rebuild()
 
     def allocate_colour(self) -> str:
         """
@@ -462,19 +477,30 @@ class GameScreen:
         dead = 0
         for agentid, agent in self.agents.items():
             if agentid not in newAgents:
+                # Agent has died from exhaustion
+                groupID = agent["GroupID"]
                 if agent["Energy"] < ENERGYTHRESHOLD:
-                    self.log(f"Agent {agentid} has run out of energy!", "ERROR")
+                    self.log(f"Agent {agentid} ({groupID}) has run out of energy!", "ERROR")
+                # Agent has died from being run over
                 elif (pow(agent["X"]-self.awdi.x, 2) < pow(EPSILON, 2)) and (pow(agent["Y"]-self.awdi.y, 2) < pow(EPSILON, 2)):
-                    self.log(f"Agent {agentid} has been run over by the Owdi!", "ERROR")
+                    self.log(f"Agent {agentid} ({groupID}) has been run over by the Owdi!", "ERROR")
+                # Agent has died for unknown reasons
                 else:
-                    self.log(f"Agent {agentid} has died for unknown reasons!", "ERROR")
+                    self.log(f"Agent {agentid} ({groupID}) has died for unknown reasons!", "ERROR")
                 dead += 1
+            else:
+                #Check if agent has moved bikes
+                if agent["onBike"] is False:
+                    self.log(f"Agent {agentid} is in the void.", "INFO")
+                    self.stats["Void Agents"] += 1
         self.stats["Alive Agents"] = len(newAgents.values())
         if str(self.round) not in self.deadCount:
             if str(self.round-1) in self.deadCount:
                 self.deadCount[str(self.round)] = self.deadCount[str(self.round-1)] + dead
             else:
                 self.stats["Dead Agents"] = "N/A"
+            if self.round % ITERATIONLENGTH == 0:
+                self.deadCount[str(self.round)] = 0
         if str(self.round) in self.deadCount:
             self.stats["Dead Agents"] = self.deadCount[str(self.round)]
         self.agents = newAgents
@@ -487,7 +513,7 @@ class GameScreen:
         for bikeid, _ in self.bikes.items():
             if bikeid not in newBikes:
                 self.log(f"Bike {bikeid} has died!", "ERROR")
-            if len(newBikes[bikeid].get_agents()) > 0:
+            elif len(newBikes[bikeid].get_agents()) > 0:
                 activeBikes += 1
         self.stats["Active Bikes"] = activeBikes
         self.bikes = newBikes
